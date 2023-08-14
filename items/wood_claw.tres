@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ToolStats" load_steps=3 format=3 uid="uid://st13rahfd4gp"]
+
+[ext_resource type="Script" path="res://inventory/resources/tool_stats.gd" id="1_5lt3g"]
+[ext_resource type="Texture2D" uid="uid://dfmeq18gv1clw" path="res://assets/weapons/wood_claw_inv.png" id="1_7brtm"]
+
+[resource]
+script = ExtResource("1_5lt3g")
+ItemDamage = 10
+ItemWoodHarvest = 2
+ItemStoneHarvest = 1
+ItemConsumeInCrafting = true
+ItemReplaceWithInCrafting = &""
+ItemName = &"WoodClaw"
+ItemTexture = ExtResource("1_7brtm")
+ItemEquippable = true
+StackAmount = 1

@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Texture2D" uid="uid://doeio68loov0t" path="res://Assets/Props/gold.png" id="1_irekj"]
+
+[node name="Gold" type="StaticBody2D"]
+collision_layer = 28
+collision_mask = 28
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_irekj")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(23, 87, 90, 8, 35, -82, -67, -57, -74, 48)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+rotation = 0.837758
+polygon = PackedVector2Array(23, 87, 91.7949, 8.6427, 38.2235, -81.3079, -67, -57, -73.9684, 47.7773)

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ResourceStats" load_steps=3 format=3 uid="uid://ggymx5emb73y"]
+
+[ext_resource type="Texture2D" uid="uid://bs5o3078rnmxo" path="res://assets/resources/emerald_refined_inv.png" id="1_1hdkd"]
+[ext_resource type="Script" path="res://inventory/resources/resource_stats.gd" id="1_ldpi8"]
+
+[resource]
+script = ExtResource("1_ldpi8")
+ItemConsumeInCrafting = true
+ItemReplaceWithInCrafting = &""
+ItemName = &"RefinedEmerald"
+ItemTexture = ExtResource("1_1hdkd")
+ItemEquippable = false
+StackAmount = 99

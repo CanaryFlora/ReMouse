@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ResourceStats" load_steps=3 format=3 uid="uid://bt828jkjfk1ec"]
+
+[ext_resource type="Texture2D" uid="uid://crhb6chhcaqfb" path="res://assets/resources/stone_inv.png" id="1_23jyh"]
+[ext_resource type="Script" path="res://inventory/resources/resource_stats.gd" id="1_jyhjv"]
+
+[resource]
+script = ExtResource("1_jyhjv")
+ItemConsumeInCrafting = true
+ItemReplaceWithInCrafting = &""
+ItemName = &"Stone"
+ItemTexture = ExtResource("1_23jyh")
+ItemEquippable = false
+StackAmount = 99

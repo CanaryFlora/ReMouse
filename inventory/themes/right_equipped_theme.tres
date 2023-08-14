@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://1vjpjcc42rad"]
+
+[ext_resource type="StyleBox" uid="uid://c2jtt4rawpe5p" path="res://Inventory/Custom Themes/RightEquippedStyleBox.tres" id="1_1feex"]
+
+[resource]
+Panel/styles/panel = ExtResource("1_1feex")
