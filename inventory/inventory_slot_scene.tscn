@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://cyadkk1ro06x1"]
+
+[ext_resource type="Script" path="res://Inventory/inventory_slot_scene.gd" id="1_8cjuc"]
+[ext_resource type="Theme" uid="uid://bq12s6xch363l" path="res://inventory/themes/base_slot_theme.tres" id="1_tkicm"]
+[ext_resource type="FontFile" uid="uid://c3uiu4uoc17vj" path="res://Comfortaa[wght].ttf" id="1_yacs3"]
+[ext_resource type="Theme" uid="uid://1vjpjcc42rad" path="res://inventory/themes/right_equipped_theme.tres" id="3_b7t0n"]
+[ext_resource type="Theme" uid="uid://b2wflb17um3xg" path="res://inventory/themes/left_equipped_theme.tres" id="4_3kdg7"]
+
+[sub_resource type="FontVariation" id="FontVariation_dgbax"]
+base_font = ExtResource("1_yacs3")
+
+[node name="Texture" type="Panel"]
+custom_minimum_size = Vector2(75, 75)
+offset_right = 75.0
+offset_bottom = 75.0
+grow_vertical = 0
+theme = ExtResource("1_tkicm")
+script = ExtResource("1_8cjuc")
+RightEquippedTheme = ExtResource("3_b7t0n")
+LeftEquippedTheme = ExtResource("4_3kdg7")
+BaseTheme = ExtResource("1_tkicm")
+
+[node name="AmountDisplay" type="Label" parent="."]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 59.0
+offset_right = 71.0
+offset_bottom = 83.0
+theme_override_fonts/font = SubResource("FontVariation_dgbax")
+theme_override_font_sizes/font_size = 14
+text = "0"
+horizontal_alignment = 2
+
+[node name="ItemSprite" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 17.5
+offset_top = 17.5
+offset_right = 57.5
+offset_bottom = 57.5
+expand_mode = 1
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://b1rmquuux5hj6"]
+
+[node name="HotbarContainer" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="HotbarGridContainer" type="GridContainer" parent="."]
+layout_mode = 0
+theme_override_constants/h_separation = 10

@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtnywuijq3x43"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_i646w"]
+[ext_resource type="Texture2D" uid="uid://co5gdq187l75b" path="res://assets/misc/placeholder_terrain.png" id="2_b1qla"]
+[ext_resource type="PackedScene" uid="uid://dq01e0j167cv" path="res://entities/player/player.tscn" id="4_1ipep"]
+[ext_resource type="Script" path="res://Saving/world_saver.gd" id="4_ved36"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_i646w")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(963.033, 545.87)
+scale = Vector2(-8.80802, 5.41296)
+texture = ExtResource("2_b1qla")
+region_enabled = true
+region_rect = Rect2(-1, -0.5, 251, 249)
+
+[node name="WorldSaver" type="Node" parent="."]
+script = ExtResource("4_ved36")
+
+[node name="Mouse" parent="." instance=ExtResource("4_1ipep")]

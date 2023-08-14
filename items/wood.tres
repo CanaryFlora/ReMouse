@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ResourceStats" load_steps=3 format=3 uid="uid://2sagchm2vdk5"]
+
+[ext_resource type="Texture2D" uid="uid://c6vd4ksq2fl7j" path="res://assets/resources/wood_inv.png" id="1_7tr5y"]
+[ext_resource type="Script" path="res://inventory/resources/resource_stats.gd" id="1_unek6"]
+
+[resource]
+script = ExtResource("1_unek6")
+ItemConsumeInCrafting = true
+ItemReplaceWithInCrafting = &""
+ItemName = &"Wood"
+ItemTexture = ExtResource("1_7tr5y")
+ItemEquippable = false
+StackAmount = 99

@@ -1,0 +1,93 @@
+[gd_scene load_steps=14 format=3 uid="uid://dq01e0j167cv"]
+
+[ext_resource type="Texture2D" uid="uid://bjot8y002imec" path="res://assets/player/mouse_body.png" id="1_b7asp"]
+[ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_k2umi"]
+[ext_resource type="Texture2D" uid="uid://b70nl8b2rcvd3" path="res://assets/player/mouse_hand_black.png" id="2_7wrog"]
+[ext_resource type="Texture2D" uid="uid://bk1lqugt2cr7x" path="res://assets/player/mouse_hand_white.png" id="3_eu1gs"]
+[ext_resource type="Script" path="res://inventory/nodes/inventory_component.gd" id="5_ivxeq"]
+[ext_resource type="Script" path="res://inventory/resources/inventory_slot_resource.gd" id="6_n03as"]
+[ext_resource type="Script" path="res://inventory/nodes/inventory_display_component.gd" id="7_noovc"]
+[ext_resource type="PackedScene" uid="uid://b1rmquuux5hj6" path="res://inventory/hotbar_container.tscn" id="8_efd86"]
+[ext_resource type="PackedScene" uid="uid://cm1s1o27qbnj" path="res://inventory/inventory_container.tscn" id="9_45yby"]
+[ext_resource type="PackedScene" uid="uid://cyadkk1ro06x1" path="res://inventory/inventory_slot_scene.tscn" id="10_788hs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_al3ms"]
+radius = 10.0499
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u6lyv"]
+size = Vector2(49, 116)
+
+[sub_resource type="Resource" id="Resource_y4wva"]
+script = ExtResource("6_n03as")
+
+[node name="Mouse" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 6
+script = ExtResource("1_k2umi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_b7asp")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="MainHitbox" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(53, 24, 54, 13, 51, 1, 43, -21, 32, -35, 17, -44, -20, -44, -32, -35, -42, -23, -50, -9, -54, 5, -55, 18, -52, 31, -47, 43, -43, 52, -40, 59, -37, 64, -15, 92, 0, 100, 12, 93, 27, 76, 36, 62, 42, 52, 48, 42, 51, 34)
+
+[node name="LeftPoint" type="Node2D" parent="."]
+position = Vector2(-42, 90)
+
+[node name="HandLeft" type="Node2D" parent="LeftPoint"]
+position = Vector2(-3, 10)
+scale = Vector2(1.2, 1.2)
+
+[node name="Sprite2D" type="Sprite2D" parent="LeftPoint/HandLeft"]
+texture = ExtResource("2_7wrog")
+
+[node name="Area2D" type="Area2D" parent="LeftPoint/HandLeft"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftPoint/HandLeft/Area2D"]
+shape = SubResource("CircleShape2D_al3ms")
+
+[node name="RightPoint" type="Node2D" parent="."]
+position = Vector2(42, 90)
+
+[node name="HandRight" type="Node2D" parent="RightPoint"]
+position = Vector2(3, 10)
+scale = Vector2(1.2, 1.2)
+
+[node name="Sprite2D" type="Sprite2D" parent="RightPoint/HandRight"]
+texture = ExtResource("3_eu1gs")
+flip_h = true
+
+[node name="Area2D" type="Area2D" parent="RightPoint/HandRight"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightPoint/HandRight/Area2D"]
+shape = SubResource("CircleShape2D_al3ms")
+
+[node name="DashHitbox" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 20)
+shape = SubResource("RectangleShape2D_u6lyv")
+disabled = true
+
+[node name="InventoryComponent" type="Node" parent="."]
+script = ExtResource("5_ivxeq")
+SlotAmount = 31
+SlotResource = SubResource("Resource_y4wva")
+
+[node name="InventoryDisplayComponent" type="Node" parent="." node_paths=PackedStringArray("InventoryComponentNode", "SlotSceneParent")]
+script = ExtResource("7_noovc")
+InventoryComponentNode = NodePath("../InventoryComponent")
+SlotSceneParent = NodePath("../PlayerUI")
+HotbarSlotAmount = 11
+HotbarContainerScene = ExtResource("8_efd86")
+HotbarContainerPosition = Vector2(10, 1000)
+InventoryContainerScene = ExtResource("9_45yby")
+InventoryContainerPosition = Vector2(10, 700)
+InventoryContainerColumns = 10
+InventorySlotScene = ExtResource("10_788hs")
+
+[node name="PlayerUI" type="CanvasLayer" parent="."]

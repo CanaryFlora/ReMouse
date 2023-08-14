@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3 uid="uid://dav0iup6huyba"]
+
+[ext_resource type="Script" path="res://Menu/menu_manager.gd" id="1_86ftx"]
+[ext_resource type="Texture2D" uid="uid://cr2d70mebwr0n" path="res://assets/gui/menu_bg.png" id="1_e3gp0"]
+[ext_resource type="Texture2D" uid="uid://d0lnuvi3byeek" path="res://assets/gui/RMlogo_big.png" id="2_wi35k"]
+[ext_resource type="FontFile" uid="uid://cwsderpq7e5u0" path="res://Comfortaa-VariableFont_wght.ttf" id="3_ncher"]
+[ext_resource type="Script" path="res://menu/bg.gd" id="3_nl51c"]
+[ext_resource type="FontFile" uid="uid://c3uiu4uoc17vj" path="res://Comfortaa[wght].ttf" id="6_uhyhe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v5wdr"]
+bg_color = Color(0.654902, 0.180392, 0.188235, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pn0x0"]
+bg_color = Color(0.168627, 0.168627, 0.168627, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_86ftx")
+
+[node name="BG" type="Sprite2D" parent="."]
+texture = ExtResource("1_e3gp0")
+centered = false
+script = ExtResource("3_nl51c")
+
+[node name="Logo" type="Sprite2D" parent="."]
+position = Vector2(960, 200)
+texture = ExtResource("2_wi35k")
+
+[node name="Disclaimer" type="Label" parent="."]
+offset_left = 1130.0
+offset_top = 970.0
+offset_right = 1917.0
+offset_bottom = 1086.0
+theme_override_colors/font_color = Color(0.976471, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_ncher")
+theme_override_font_sizes/font_size = 100
+text = "Testing Version"
+
+[node name="Play" type="Button" parent="."]
+offset_left = 878.0
+offset_top = 474.0
+offset_right = 1138.0
+offset_bottom = 634.0
+theme_override_fonts/font = ExtResource("3_ncher")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_v5wdr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_v5wdr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_v5wdr")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_v5wdr")
+theme_override_styles/focus = SubResource("StyleBoxFlat_v5wdr")
+text = "Play"
+
+[node name="Settings" type="Button" parent="."]
+offset_left = 826.0
+offset_top = 660.0
+offset_right = 1186.0
+offset_bottom = 820.0
+theme_override_fonts/font = ExtResource("6_uhyhe")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_pn0x0")
+text = "Settings"
+
+[connection signal="pressed" from="Play" to="." method="_on_playbutton_pressed"]
+[connection signal="pressed" from="Settings" to="." method="_on_button_2_pressed"]
