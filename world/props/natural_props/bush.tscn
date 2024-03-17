@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cypmqbo3arfbn"]
+
+[ext_resource type="Texture2D" uid="uid://dn2rj6dp6gmr5" path="res://assets/props/redberry_bush.png" id="1_okj60"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hei0q"]
+radius = 75.0
+
+[node name="RedberryBush" type="StaticBody2D"]
+collision_layer = 12
+collision_mask = 28
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_okj60")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hei0q")

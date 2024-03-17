@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://c2vea16hvklcp"]
+
+[ext_resource type="Texture2D" uid="uid://vsutuknscjwg" path="res://assets/resources/bottle.png" id="1_kcq1m"]
+[ext_resource type="Script" path="res://inventory/resources/item_resource.gd" id="2_66i6c"]
+
+[resource]
+script = ExtResource("2_66i6c")
+item_name = &"Bottle"
+item_texture = ExtResource("1_kcq1m")
+stack_amount = 99
+item_components = Array[Resource("res://inventory/resources/item_component.gd")]([])
+item_specific_properties = {}

@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1gjcnrouhtyc"]
+
+[ext_resource type="Texture2D" uid="uid://bbiy2muic1m2c" path="res://assets/props/iron.png" id="1_c0niq"]
+
+[node name="Iron" type="StaticBody2D"]
+collision_layer = 28
+collision_mask = 28
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_c0niq")
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="."]
+position = Vector2(-1, 1)
+rotation = 2.13454
+polygon = PackedVector2Array(-101.12, -40.1842, -86.7899, 66.6972, 13.4847, 107.416, 99.7402, 39.8733, 84.0306, -67.319, -17.6236, -108.349)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(108, 6, 54, 99, -54, 100, -107, 6, -54, -87, 54, -87)

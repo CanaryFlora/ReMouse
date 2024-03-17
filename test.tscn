@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dn74g2pjgh8fe"]
+
+[ext_resource type="Script" path="res://components/player_control_movement_component.gd" id="1_y2anu"]
+[ext_resource type="Texture2D" uid="uid://c2c33m2xdc1i0" path="res://icon.svg" id="2_hu8e8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7l3tw"]
+
+[node name="Node2D" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7l3tw")
+
+[node name="PlayerControlMovementComponent" type="Node" parent="." node_paths=PackedStringArray("EntityNode")]
+script = ExtResource("1_y2anu")
+BaseMovementSpeed = 1000
+EntityNode = NodePath("..")
+CanUsePreciseMovement = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_hu8e8")

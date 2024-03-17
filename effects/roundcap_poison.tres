@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://qnple78qpcbh"]
+
+[ext_resource type="Texture2D" uid="uid://irmoxeop5xri" path="res://assets/status_effects/roundcap_poison.png" id="1_4887g"]
+[ext_resource type="Script" path="res://components/effect/effect.gd" id="1_kfr30"]
+
+[resource]
+script = ExtResource("1_kfr30")
+name = &"Roundcap Poison"
+description = "The poison of the roundcap mushroom is slowly inflicting damage."
+icon = ExtResource("1_4887g")
+type = "Debuff"
+stacking_mode = "Stack"
+overflow_mode = "Replace"

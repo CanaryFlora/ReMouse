@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dc68bta65k6db"]
+[gd_scene load_steps=3 format=3 uid="uid://dc68bta65k6db"]
 
 [ext_resource type="FontFile" uid="uid://c3uiu4uoc17vj" path="res://Comfortaa[wght].ttf" id="1_eq47c"]
-[ext_resource type="Script" path="res://saving/settings_saver.gd" id="2_hjot7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5raxc"]
 bg_color = Color(0.509804, 0.509804, 0.509804, 1)
@@ -44,6 +43,3 @@ scale = Vector2(2, 2)
 theme_override_fonts/font = ExtResource("1_eq47c")
 theme_override_font_sizes/font_size = 20
 text = "Developer Mode"
-
-[node name="SettingsSaver" type="Node" parent="."]
-script = ExtResource("2_hjot7")

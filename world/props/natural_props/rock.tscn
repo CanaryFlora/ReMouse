@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://2fqfl7g63swg"]
+
+[ext_resource type="Texture2D" uid="uid://d3yhw4i6ov336" path="res://assets/props/rock.png" id="1_dhhep"]
+
+[node name="Rock" type="StaticBody2D"]
+collision_layer = 28
+collision_mask = 28
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_dhhep")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(46, 116, -81, 91, -112, -22, -41, -114, 86, -88, 117, 25)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-6, 124, 93, 73, 112, -39, 10, -114, -88, -62, -107, 50)
