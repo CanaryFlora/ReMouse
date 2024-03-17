@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfc5kk2o6htw"]
+
+[ext_resource type="Texture2D" uid="uid://b6fr1new2vu2s" path="res://assets/props/furnace.png" id="1_5lyms"]
+
+[node name="Furnace" type="StaticBody2D"]
+collision_layer = 28
+collision_mask = 28
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5lyms")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-62, 61, -87, -2, -61, -62, 0, -87, 61, -62, 86, 0, 62, 62)

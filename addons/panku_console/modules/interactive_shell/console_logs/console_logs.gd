@@ -14,7 +14,6 @@ func _ready():
 func add_log(bbcode:String):
 	rlabel.text += (bbcode + "\n")
 
-
 func clear():
 	rlabel.text = ""
 

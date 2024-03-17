@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://b560uxcehnhsw"]
+
+[node name="EffectGrid" type="VBoxContainer"]
+
+[node name="CenterContainer1" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(508, 92)
+layout_mode = 2
+
+[node name="Row1" type="GridContainer" parent="CenterContainer1"]
+custom_minimum_size = Vector2(508, 92)
+layout_mode = 2
+
+[node name="CenterContainer2" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(508, 92)
+layout_mode = 2
+
+[node name="Row2" type="GridContainer" parent="CenterContainer2"]
+layout_mode = 2
+columns = 8

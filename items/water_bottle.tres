@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=7 format=3 uid="uid://b33u7msymdsn4"]
+
+[ext_resource type="Script" path="res://inventory/resources/item_components/consumable_component.gd" id="1_k4vvn"]
+[ext_resource type="Script" path="res://inventory/resources/item_resource.gd" id="1_xlple"]
+[ext_resource type="Script" path="res://inventory/resources/item_components/use_component.gd" id="2_bjtuv"]
+[ext_resource type="Texture2D" uid="uid://7dbqjrj1ahs5" path="res://assets/consumables/water_flask.png" id="3_8s2is"]
+
+[sub_resource type="Resource" id="Resource_1w6ht"]
+script = ExtResource("1_k4vvn")
+item_use_amount = 1
+items_replace_on_no_uses = Array[ExtResource("1_xlple")]([])
+
+[sub_resource type="Resource" id="Resource_v2gwd"]
+script = ExtResource("2_bjtuv")
+
+[resource]
+script = ExtResource("1_xlple")
+item_name = &"Water Bottle"
+item_texture = ExtResource("3_8s2is")
+stack_amount = 99
+item_components = Array[Resource("res://inventory/resources/item_component.gd")]([SubResource("Resource_1w6ht"), SubResource("Resource_v2gwd")])
+item_specific_properties = {}

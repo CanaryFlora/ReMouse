@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://gjtsuf0s42y4"]
+
+[ext_resource type="Theme" uid="uid://bvejy1853mvvi" path="res://components/effect_display/themes/mixed_effect_theme.tres" id="1_ive2w"]
+
+[node name="Panel" type="Panel"]
+custom_minimum_size = Vector2(60, 60)
+offset_right = 60.0
+offset_bottom = 60.0
+theme = ExtResource("1_ive2w")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 55.0
+offset_bottom = 55.0
+
+[node name="TextureRect" type="TextureProgressBar" parent="CenterContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+fill_mode = 3
