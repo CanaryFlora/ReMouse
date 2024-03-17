@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://c7ove37uf3dhj"]
+
+[ext_resource type="Texture2D" uid="uid://bqseulfaeh4tt" path="res://assets/status_effects/health boost.png" id="1_41jjv"]
+[ext_resource type="Script" path="res://components/effect/effect.gd" id="1_ii4e7"]
+
+[resource]
+script = ExtResource("1_ii4e7")
+name = &"Health Boost"
+description = "Max health increased"
+icon = ExtResource("1_41jjv")
+type = "Buff"
+stacking_mode = "Stack"
+overflow_mode = "Replace"

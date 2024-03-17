@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://dy2pyhc8ykfto"]
+
+[ext_resource type="Theme" uid="uid://dmwpju8jria1y" path="res://components/effect_display/themes/effect_tooltip_theme.tres" id="1_gysy7"]
+
+[node name="Panel" type="PanelContainer"]
+offset_right = 80.0
+offset_bottom = 84.0
+theme = ExtResource("1_gysy7")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="EffectTooltip" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="RichTextLabel" parent="MarginContainer/EffectTooltip"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 0
+
+[node name="Description" type="RichTextLabel" parent="MarginContainer/EffectTooltip"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 0

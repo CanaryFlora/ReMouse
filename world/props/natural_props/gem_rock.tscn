@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bg13hskklgdat"]
+
+[ext_resource type="Texture2D" uid="uid://b3fhespvswfw4" path="res://assets/props/gem_rock.png" id="1_8k0ml"]
+
+[node name="GemRock" type="StaticBody2D"]
+collision_layer = 28
+collision_mask = 28
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_8k0ml")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(22, 101, 98, 31, 76, -71, -23, -102, -98, -31, -75, 71)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(104, -25, 73, 79, -30, 104, -104, 25, -74, -78, 29, -104)

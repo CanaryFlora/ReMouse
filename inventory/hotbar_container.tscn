@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b1rmquuux5hj6"]
 
-[node name="HotbarContainer" type="Control"]
+[node name="HotbarControl" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2
