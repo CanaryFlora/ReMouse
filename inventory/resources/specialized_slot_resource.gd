@@ -3,7 +3,7 @@ extends InventorySlotResource
 class_name SpecializedSlotResource
 
 @export_group("SpecializedSlotResource")
-## The components items must have to be stored in this slot.
+## The component items must have to be stored in this slot.
 @export var allowed_item_components : Array[ItemComponent]
 ## Specific items which can be stored in this slot. Overrides the item type selection. 
 @export var allowed_items : Array[ItemResource]

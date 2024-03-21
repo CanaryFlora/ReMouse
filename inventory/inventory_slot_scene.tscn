@@ -1,11 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cyadkk1ro06x1"]
+[gd_scene load_steps=5 format=3 uid="uid://cyadkk1ro06x1"]
 
 [ext_resource type="Script" path="res://inventory/inventory_slot_scene.gd" id="1_8cjuc"]
 [ext_resource type="Theme" uid="uid://bq12s6xch363l" path="res://inventory/themes/base_slot_theme.tres" id="1_tkicm"]
 [ext_resource type="FontFile" uid="uid://c3uiu4uoc17vj" path="res://Comfortaa[wght].ttf" id="1_yacs3"]
-[ext_resource type="Theme" uid="uid://1vjpjcc42rad" path="res://inventory/themes/right_equipped_theme.tres" id="3_eqfdq"]
-[ext_resource type="Theme" uid="uid://b2wflb17um3xg" path="res://inventory/themes/left_equipped_theme.tres" id="4_m2oav"]
-[ext_resource type="Texture2D" uid="uid://dvbtg2kky54y3" path="res://assets/resources/ruby_refined_inv.png" id="6_4cm73"]
 
 [sub_resource type="FontVariation" id="FontVariation_dgbax"]
 base_font = ExtResource("1_yacs3")
@@ -17,9 +14,6 @@ offset_bottom = 75.0
 grow_vertical = 0
 theme = ExtResource("1_tkicm")
 script = ExtResource("1_8cjuc")
-right_equipped_theme = ExtResource("3_eqfdq")
-left_equipped_theme = ExtResource("4_m2oav")
-base_theme = ExtResource("1_tkicm")
 
 [node name="AmountDisplay" type="Label" parent="."]
 layout_mode = 0
@@ -38,6 +32,5 @@ offset_left = 17.5
 offset_top = 17.5
 offset_right = 57.5
 offset_bottom = 57.5
-texture = ExtResource("6_4cm73")
 expand_mode = 1
 stretch_mode = 3

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvlgqwty76q8m"]
+
+[ext_resource type="Script" path="res://entities/player/player.gd" id="1_lhpit"]
+
+[node name="Player" type="RigidBody2D"]
+script = ExtResource("1_lhpit")

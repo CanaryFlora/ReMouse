@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bhu3uk8yuq5c7"]
+
+[ext_resource type="StyleBox" uid="uid://c2jtt4rawpe5p" path="res://inventory/themes/right_equipped_style_box.tres" id="1_1p8so"]
+
+[resource]
+Panel/styles/panel = ExtResource("1_1p8so")

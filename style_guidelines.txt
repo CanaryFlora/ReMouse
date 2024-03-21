@@ -1,3 +1,0 @@
-PascalCase for any variables, including constants and enums, and node/resource/class names
-snake_case for folder and file names, function names, and signals
-

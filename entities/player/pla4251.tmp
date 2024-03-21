@@ -1,0 +1,156 @@
+[gd_scene load_steps=21 format=3 uid="uid://day2gigkbrlvw"]
+
+[ext_resource type="Script" path="res://entities/player/player.gd" id="1_wgmn8"]
+[ext_resource type="Texture2D" uid="uid://c1lg316nsbt3d" path="res://assets/player/roachmouse_body.png" id="2_smdd7"]
+[ext_resource type="Texture2D" uid="uid://cer3dnubik2wu" path="res://assets/player/roachmouse_hand.png" id="3_7hx8c"]
+[ext_resource type="Script" path="res://inventory/nodes/inventory_display_component.gd" id="6_2kno8"]
+[ext_resource type="Script" path="res://inventory/resources/inventory_slot_resource.gd" id="6_pjpky"]
+[ext_resource type="Script" path="res://inventory/nodes/inventory_use_component.gd" id="7_1wq0u"]
+[ext_resource type="PackedScene" uid="uid://cyadkk1ro06x1" path="res://inventory/inventory_slot_scene.tscn" id="8_hc1cu"]
+[ext_resource type="PackedScene" uid="uid://b1rmquuux5hj6" path="res://inventory/hotbar_container.tscn" id="9_4cl0j"]
+[ext_resource type="PackedScene" uid="uid://cm1s1o27qbnj" path="res://inventory/inventory_container.tscn" id="10_k4fgs"]
+[ext_resource type="Script" path="res://components/player_control_movement_component.gd" id="11_htuck"]
+[ext_resource type="Script" path="res://components/variable_stats/entity_variable_stats_component.gd" id="12_3xv0u"]
+[ext_resource type="Script" path="res://components/variable_stats/stat_properties.gd" id="13_rvhr3"]
+[ext_resource type="Script" path="res://components/effect_display/effect_display_component.gd" id="15_i6v5e"]
+[ext_resource type="PackedScene" uid="uid://b560uxcehnhsw" path="res://components/effect_display/scenes/effect_grid.tscn" id="15_slvqj"]
+[ext_resource type="Script" path="res://inventory/nodes/inventory_equip_component.gd" id="16_vf3vj"]
+[ext_resource type="Texture2D" uid="uid://be5563ehasak4" path="res://assets/variable_stats/health_bar.png" id="17_ck472"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e8u32"]
+radius = 10.8653
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kd5wk"]
+size = Vector2(49, 116)
+
+[sub_resource type="Resource" id="Resource_od6ci"]
+script = ExtResource("6_pjpky")
+
+[sub_resource type="Resource" id="Resource_8b2i8"]
+script = ExtResource("13_rvhr3")
+stat_name = &"Health"
+min_value = 0.0
+max_value = 100.0
+starting_value = 100.0
+decay = 0.0
+gain = 1.0
+increment_rate = 1.0
+progress_bar_node_path = NodePath("../StatUI/TextureProgressBar")
+
+[node name="Mouse" type="RigidBody2D" node_paths=PackedStringArray("entity_collision_node", "dash_hitbox")]
+collision_layer = 28
+collision_mask = 28
+gravity_scale = 0.0
+can_sleep = false
+linear_damp = 2.5
+script = ExtResource("1_wgmn8")
+entity_collision_node = NodePath("MainHitbox")
+dash_hitbox = NodePath("DashHitbox")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.95, 1)
+texture = ExtResource("2_smdd7")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="MainHitbox" type="CollisionPolygon2D" parent="."]
+scale = Vector2(0.95, 1.03)
+polygon = PackedVector2Array(53, 24, 54, 13, 51, 1, 43, -21, 32, -35, 17, -44, -20, -44, -32, -35, -42, -23, -50, -9, -54, 5, -55, 18, -52, 31, -47, 43, -43, 52, -40, 59, -37, 64, -15, 92, 0, 100, 12, 93, 27, 76, 36, 62, 42, 52, 48, 42, 51, 34)
+
+[node name="LeftPoint" type="Node2D" parent="."]
+position = Vector2(-42, 90)
+
+[node name="HandLeft" type="Node2D" parent="LeftPoint"]
+position = Vector2(-3, 10)
+scale = Vector2(1.2, 1.2)
+
+[node name="Sprite2D" type="Sprite2D" parent="LeftPoint/HandLeft"]
+texture = ExtResource("3_7hx8c")
+
+[node name="Area2D" type="Area2D" parent="LeftPoint/HandLeft"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftPoint/HandLeft/Area2D"]
+shape = SubResource("CircleShape2D_e8u32")
+
+[node name="RightPoint" type="Node2D" parent="."]
+position = Vector2(42, 90)
+
+[node name="HandRight" type="Node2D" parent="RightPoint"]
+position = Vector2(3, 10)
+scale = Vector2(1.2, 1.2)
+
+[node name="Sprite2D" type="Sprite2D" parent="RightPoint/HandRight"]
+texture = ExtResource("3_7hx8c")
+flip_h = true
+
+[node name="Area2D" type="Area2D" parent="RightPoint/HandRight"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightPoint/HandRight/Area2D"]
+shape = SubResource("CircleShape2D_e8u32")
+
+[node name="DashHitbox" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 20)
+shape = SubResource("RectangleShape2D_kd5wk")
+disabled = true
+
+[node name="InventoryDisplayComponent" type="Node" parent="." node_paths=PackedStringArray("slot_scene_parent")]
+script = ExtResource("6_2kno8")
+slot_scene_parent = NodePath("../InventoryUI")
+inventory_slot_scene = ExtResource("8_hc1cu")
+hotbar_slot_amount = 11
+hotbar_container_scene = ExtResource("9_4cl0j")
+hotbar_container_position = Vector2(5, 1000)
+inventory_container_scene = ExtResource("10_k4fgs")
+inventory_container_position = Vector2(0, 700)
+inventory_container_columns = 10
+toggle_right_hand_equip_mode_on_equip = null
+slot_amount = 31
+slot_resource = SubResource("Resource_od6ci")
+
+[node name="InventoryUseComponent" type="Node" parent="."]
+script = ExtResource("7_1wq0u")
+
+[node name="BasePlayerMovementComponent" type="Node" parent="."]
+script = ExtResource("11_htuck")
+base_movement_speed = 1600
+can_use_precise_movement = true
+delay_multiplier = 250
+min_turn_time = 0.05
+
+[node name="EntityVariableStatsComponent" type="Node" parent="."]
+script = ExtResource("12_3xv0u")
+stats_array = Array[ExtResource("13_rvhr3")]([SubResource("Resource_8b2i8")])
+
+[node name="EffectDisplayComponent" type="Node" parent="." node_paths=PackedStringArray("effect_grid", "target", "stats_component")]
+script = ExtResource("15_i6v5e")
+effect_grid = NodePath("../EffectUI/EffectGrid")
+target = NodePath("..")
+max_effects = 16
+stats_component = NodePath("../EntityVariableStatsComponent")
+
+[node name="InventoryEquipComponent" type="Node" parent="."]
+script = ExtResource("16_vf3vj")
+
+[node name="InventoryUI" type="CanvasLayer" parent="."]
+
+[node name="EffectUI" type="CanvasLayer" parent="."]
+
+[node name="EffectGrid" parent="EffectUI" instance=ExtResource("15_slvqj")]
+offset_left = 1100.0
+offset_top = 890.0
+offset_right = 1100.0
+offset_bottom = 890.0
+
+[node name="StatUI" type="CanvasLayer" parent="."]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="StatUI"]
+offset_left = 1850.0
+offset_top = 1020.0
+offset_right = 1900.0
+offset_bottom = 1070.0
+fill_mode = 4
+texture_progress = ExtResource("17_ck472")

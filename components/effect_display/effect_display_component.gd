@@ -1,4 +1,4 @@
-extends Node
+extends EffectComponent
 class_name EffectDisplayComponent
 
 
@@ -6,7 +6,6 @@ class_name EffectDisplayComponent
 @export_enum("Timers", "Bars") var effect_display_type : String = "Timers"
 
 
-var effect_component : EffectComponent
 var effect_container_array : Array[Control]
 
 
@@ -18,9 +17,8 @@ const MIXED_EFFECT_THEME : Theme = preload("res://components/effect_display/them
 
 
 func _ready():
-	effect_component = get_parent().effect_component
-	effect_component.effect_ended.connect(remove_effect_container)
-	effect_component.effect_applied.connect(add_effect_container)
+	self.effect_ended.connect(remove_effect_container)
+	self.effect_applied.connect(add_effect_container)
 
 
 func _physics_process(delta):
@@ -51,7 +49,7 @@ func add_effect_container(effect : Effect):
 
 
 func update_effects():
-	for effect : Effect in effect_component.current_effects:
+	for effect : Effect in current_effects:
 		match effect_display_type:
 			"Timers":
 				effect.effect_container.get_node("Label").text = str(ceil(effect.timer.time_left)) + "s"
