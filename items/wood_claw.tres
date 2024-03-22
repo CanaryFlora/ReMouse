@@ -10,6 +10,7 @@ script = ExtResource("2_al28i")
 [resource]
 script = ExtResource("1_mujet")
 item_name = &"Wood Claw"
+item_description = ""
 item_texture = ExtResource("2_ffhwu")
 stack_amount = 1
 item_specific_properties = {}

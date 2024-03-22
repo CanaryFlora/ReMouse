@@ -23,14 +23,15 @@ const item_database : Dictionary = {
 	"Water Bottle": preload("res://items/water_bottle.tres"),
 	"Redberry": preload("res://items/redberry.tres"),
 	"Cheese": preload("res://items/cheese.tres"),
-	"Wood Claw": preload("res://items/wood_claw.tres")
+	"Wood Claw": preload("res://items/wood_claw.tres"),
+	"Wood Barricade Shield": preload("res://items/wood_barricade_shield.tres")
 }
 
 
 
 func _ready():
 	generate_inventory_resources(slot_amount, slot_resource)
-	add_item("Cheese", 5)
+	#add_item("Cheese", 5)
 #	add_item("refinedtopaz", 99)
 #	add_item("refinedruby", 99)
 #	add_item("refineddiamond", 99)
@@ -40,9 +41,10 @@ func _ready():
 #	add_item("wood", 99)
 #	add_item("stone", 99)
 #	add_item("reFined Ruby", 99)
-	add_item("Redberry", 5)
-	add_item("Wood Claw", 1)
-	add_item("Water Bottle", 8)
+	#add_item("Redberry", 5)
+	add_item("Wood Claw", 7)
+	add_item("Wood Barricade Shield")
+	#add_item("Water Bottle", 8)
 
 #------------------------------------------------------------------#
 #------------------------Inventory Utilities-----------------------#
@@ -55,7 +57,7 @@ func generate_inventory_resources(amount : int, resource : InventorySlotResource
 		push_error("Inventory component slot generated amount is less than 0, no slots will be generated.")
 	# print("Resource Generation Started")
 	for i in range(amount):
-		slot_resources_array.append(resource.duplicate())
+		slot_resources_array.append(resource.duplicate(true))
 	# print(slot_resources_array.size(), " SlotResources have been generated. Base resource: ", resource)
 	# print("slot_resources_array:")
 	# print(slot_resources_array)
@@ -161,7 +163,7 @@ func add_item(item : String, amount : int = 1):
 					elif max_possible_amount >= amount:
 						amount_to_add = amount
 					# Use edit_slot_resource_util to edit the empty slot_resource according to the input
-					empty_slot.item_resource = item_in_database
+					empty_slot.item_resource = item_in_database.duplicate(true)
 					empty_slot.item_amount = amount_to_add
 					amount = amount - item_in_database.stack_amount
 					print("Successfully added ", amount_to_add, " of the item ", item.to_lower(), " to an empty slot_resource.")
@@ -171,7 +173,7 @@ func add_item(item : String, amount : int = 1):
 					# Calculate if the maximum possible amount that can be added to a slot is smaller than the total amount
 					# This prevents adding more items to a stack than its stack_amount
 					var prev_amount : int = empty_slot.item_amount
-					var max_possible_amount : int = empty_slot.OverrideStackAmount
+					var max_possible_amount : int = empty_slot.override_stack_amount
 					var amount_to_add : int
 					if max_possible_amount < amount:
 						amount_to_add = max_possible_amount
@@ -179,7 +181,7 @@ func add_item(item : String, amount : int = 1):
 						amount_to_add = amount
 					print("Resource currently has ", empty_slot.item_amount, " items. After adding ", amount_to_add, " items, the slot will have ", empty_slot.item_amount + amount_to_add, " items.")
 					# Use edit_slot_resource_util to edit the slot_amount of the found slot_resource according to the input
-					empty_slot.item_resource = item_in_database
+					empty_slot.item_resource = item_in_database.duplicate(true)
 					empty_slot.item_amount = empty_slot.item_amount + amount_to_add
 					amount = amount - amount_to_add
 					print("Successfully added ", amount_to_add, " of the item ", item.to_lower(), " to an non-full SpecializedSlotResource.")

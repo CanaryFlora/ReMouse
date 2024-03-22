@@ -8,6 +8,10 @@ var display_slots_array : Array[Node]
 @export var slot_scene_parent : Node
 ## The scene which will be used as the GUI inventory slot. See the code for InventoryDisplayComponent for guidelines on how to create a custom inventory scene.
 @export var inventory_slot_scene : PackedScene
+## If this component will support equipping items and require an InventoryEquipComponent to function.
+@export var equip_allowed : bool
+## If this component will support using items and require an InventoryUseComponent to function.
+@export var use_allowed : bool
 
 @export_group("Hotbar Settings")
 ## The amount of slots in the hotbar. Set this to the same amount as InventoryComponent's slot_amount for all slots to be hotbar slots.
@@ -16,6 +20,7 @@ var display_slots_array : Array[Node]
 @export var hotbar_container_scene : PackedScene
 ## The position at where the hotbar_container_scene will be moved to after being instantiated.
 @export var hotbar_container_position : Vector2
+
 
 @export_group("Inventory Settings")
 ## The GridContainer which will be used for spacing and showing/hiding of the inventory slots.
@@ -50,7 +55,6 @@ var right_hand_equip_mode : bool
 # 2: a Label node, named AmountDisplay (this will display the amount of items in the slot)
 # 3: a TextureRect node, named ItemSprite (this will display the sprite of the item)
 
-
 # --------------hotbar_container:
 # Required nodes: 
 # 1: a root Control node, named hotbar_control (will be used for hiding the hotbar)
@@ -60,6 +64,7 @@ var right_hand_equip_mode : bool
 # Required nodes: 
 # 1: a root Control node, named inventory_control(will be used for hiding the inventory)
 # 2: a GridContainer node, named InventoryGridContainer  (this will put the InventorySlotScenes in a organized grid)
+
 
 func _ready():
 	super()
@@ -141,27 +146,57 @@ func _unhandled_key_input(event):
 	elif event.is_action_pressed("right_hand_equip_mode") and right_hand_equip_mode:
 		right_hand_equip_mode = false
 	## activate item ability
-	#if event.is_action_pressed("activate_equipped_item_ability"):
-		#var equipped_items : Dictionary = inventory_use_component_node.find_two_hand_equipped_items()
-		## print(equipped_items)
-		#if get_parent().current_hand == "left" and equipped_items["equipped_left"] != null:
-			## print("left")
-			#inventory_use_component_node.use_item(equipped_items["equipped_left"], "primary")
-		#elif get_parent().current_hand == "right" and equipped_items["equipped_right"] != null:
-			## print("right")
-			#inventory_use_component_node.use_item(equipped_items["equipped_right"], "secondary")
+	if use_allowed:
+		if event.is_action_pressed("use_left_hand_secondary"):
+			inventory_use_component_node.use_item(inventory_equip_component_node.left_hand_equipped_item, 
+			inventory_use_component_node.UseType.SECONDARY)
+		elif event.is_action_pressed("use_right_hand_secondary"):
+			inventory_use_component_node.use_item(inventory_equip_component_node.right_hand_equipped_item, 
+			inventory_use_component_node.UseType.SECONDARY)
 	## inv slots quick equip
-	var key_number : String = event.as_text()
-	if event is InputEventKey:
+	if equip_allowed:
 		if event.pressed and !event.echo:
-			for i in range(9):
+			for i in range(11):
 				if event.is_action_pressed("hotbar_slot_" + str(i + 1)):
 					var pressed_slot : InventorySlotResource = display_slots_array[i].linked_slot_resource
-					if pressed_slot.item_equipped_left or pressed_slot.item_equipped_right and inventory_equip_component_node.left_hand_equipped_item != null:
-						inventory_equip_component_node.unequip_item(pressed_slot, inventory_equip_component_node.EquipType.LEFT_HAND)
-					else:
-						inventory_equip_component_node.equip_item(pressed_slot, inventory_equip_component_node.EquipType.LEFT_HAND)
-				elif event.is_action_pressed("hotbar_slot_10"):
-					pass
-				elif event.is_action_pressed("hotbar_slot_11"):
-					pass
+					if pressed_slot.item_resource != null:
+						if pressed_slot.item_resource.equip_component != null:
+							if (
+							pressed_slot.item_resource.equip_component is TwoHandComponent 
+							and pressed_slot.item_resource.equip_component.item_equipped_left 
+							and pressed_slot.item_resource.equip_component.item_equipped_left
+							and pressed_slot.item_resource.equip_component.two_hand_only
+							):
+								inventory_equip_component_node.unequip_item(pressed_slot, inventory_equip_component_node.EquipType.TWO_HAND)
+							elif (
+								pressed_slot.item_resource.equip_component.item_equipped_left
+								and !pressed_slot.item_resource.equip_component is TwoHandComponent
+								or pressed_slot.item_resource.equip_component is TwoHandComponent
+								and pressed_slot.item_resource.equip_component.item_equipped_left
+								and !right_hand_equip_mode
+								):
+								inventory_equip_component_node.unequip_item(pressed_slot, inventory_equip_component_node.EquipType.LEFT_HAND)
+							elif (
+								pressed_slot.item_resource.equip_component.item_equipped_right
+								and !pressed_slot.item_resource.equip_component is TwoHandComponent
+								or pressed_slot.item_resource.equip_component is TwoHandComponent
+								and pressed_slot.item_resource.equip_component.item_equipped_right
+								and right_hand_equip_mode
+								):
+								inventory_equip_component_node.unequip_item(pressed_slot, inventory_equip_component_node.EquipType.RIGHT_HAND)
+							else:
+								if (
+									pressed_slot.item_resource.equip_component is TwoHandComponent 
+									and pressed_slot.item_resource.equip_component.two_hand_only
+									):
+										inventory_equip_component_node.equip_item(pressed_slot, inventory_equip_component_node.EquipType.TWO_HAND)
+								elif right_hand_equip_mode:
+									inventory_equip_component_node.equip_item(pressed_slot, inventory_equip_component_node.EquipType.RIGHT_HAND, !(
+										pressed_slot.item_resource.equip_component is TwoHandComponent 
+										and pressed_slot.item_resource.equip_component.two_hand_only))
+								else:
+									inventory_equip_component_node.equip_item(pressed_slot, inventory_equip_component_node.EquipType.LEFT_HAND, !(
+										pressed_slot.item_resource.equip_component is TwoHandComponent 
+										and pressed_slot.item_resource.equip_component.two_hand_only))
+
+

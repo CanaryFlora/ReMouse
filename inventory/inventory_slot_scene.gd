@@ -27,14 +27,15 @@ func _process(delta):
 		item_sprite.texture = linked_slot_resource.item_resource.item_texture
 		amount_display.text = str(linked_slot_resource.item_amount)
 		if is_panel == true:
-			if linked_slot_resource.item_equipped_left == true:
-				self.theme = left_equipped_theme
-			elif linked_slot_resource.item_equipped_right == true:
-				self.theme = right_equipped_theme
-			elif linked_slot_resource.item_equipped_left == false and linked_slot_resource.item_equipped_right == false:
-				self.theme = base_theme
-			elif linked_slot_resource.item_equipped_left == false and linked_slot_resource.item_equipped_right == false:
-				self.theme = two_hand_equipped_theme
+			if linked_slot_resource.item_resource.equip_component != null:
+				if linked_slot_resource.item_resource.equip_component.item_equipped_left == true and linked_slot_resource.item_resource.equip_component.item_equipped_right == true:
+					self.theme = two_hand_equipped_theme
+				elif linked_slot_resource.item_resource.equip_component.item_equipped_left == true:
+					self.theme = left_equipped_theme
+				elif linked_slot_resource.item_resource.equip_component.item_equipped_right == true:
+					self.theme = right_equipped_theme
+				elif linked_slot_resource.item_resource.equip_component.item_equipped_left == false and linked_slot_resource.item_resource.equip_component.item_equipped_right == false:
+					self.theme = base_theme
 	elif linked_slot_resource.item_resource == null:
 		item_sprite.texture = null
 		amount_display.text = str(0)
@@ -64,5 +65,5 @@ func _drop_data(at_position, data):
 	data[0].linked_slot_resource = linked_slot_resource
 	linked_slot_resource = data[1]
 	if hotbar_slot == false:
-		linked_slot_resource.item_equipped_left = false
-		linked_slot_resource.item_equipped_right = false
+		linked_slot_resource.item_resource.equip_component.item_equipped_left = false
+		linked_slot_resource.item_resource.equip_component.item_equipped_right = false

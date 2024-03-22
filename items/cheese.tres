@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_34vm0")
 item_name = &"cheese"
+item_description = ""
 item_texture = ExtResource("2_rqk6g")
 stack_amount = 99
 item_specific_properties = {}

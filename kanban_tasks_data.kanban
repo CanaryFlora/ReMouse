@@ -11,8 +11,8 @@
 			"uuid": "84942bea-16f4-460b-a9cb-3cbbb2e6e5e3",
 			"title": "Currently Doing",
 			"tasks": [
-				"4056db5d-a9d7-46ce-985e-996a6cf3e6ac",
-				"5a7d4844-5d12-443a-9456-df439a49fe63"
+				"5a7d4844-5d12-443a-9456-df439a49fe63",
+				"4056db5d-a9d7-46ce-985e-996a6cf3e6ac"
 			]
 		},
 		{
@@ -40,8 +40,8 @@
 		},
 		{
 			"uuid": "3bc59276-c073-4b94-94a8-eb0a3f76c5e2",
-			"title": "uncouple inventory use/equip components from inventorydisplay",
-			"description": "1: make using equip/use components optional and add options in inventorydisplay export\n2: edit the code to uncouple them",
+			"title": "uncouple inventory use component from inventorydisplay",
+			"description": "1: make using the use component optional and add options in inventorydisplay export\n2: edit the code to uncouple it",
 			"category": "08ad5ebf-1f20-4da7-835e-22f5bcd00330",
 			"steps": []
 		},

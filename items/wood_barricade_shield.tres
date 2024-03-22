@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=5 format=3 uid="uid://cwi0yj1yki30o"]
+
+[ext_resource type="Script" path="res://inventory/resources/item_components/two_hand_component.gd" id="1_46wvp"]
+[ext_resource type="Texture2D" uid="uid://c4ojtah20jtxc" path="res://addons/godot_state_charts/atomic_state.svg" id="2_03ad8"]
+[ext_resource type="Script" path="res://inventory/resources/item_resource.gd" id="3_frdx4"]
+
+[sub_resource type="Resource" id="Resource_hturg"]
+script = ExtResource("1_46wvp")
+two_hand_only = false
+
+[resource]
+script = ExtResource("3_frdx4")
+item_name = &"Wood Barricade Shield"
+item_description = ""
+item_texture = ExtResource("2_03ad8")
+stack_amount = 99
+item_specific_properties = {}
+equip_component = SubResource("Resource_hturg")

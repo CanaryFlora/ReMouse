@@ -29,7 +29,6 @@ var currently_attacking : bool
 
 
 func _ready():
-	print(inventory_equip_component)
 	# register panku stuff
 	Panku.gd_exprenv.register_env("player", self)
 	Panku.gd_exprenv.register_env("player_inventory_component", inventory_component)
