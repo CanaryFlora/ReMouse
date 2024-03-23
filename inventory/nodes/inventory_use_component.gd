@@ -21,23 +21,25 @@ enum UseArguments {
 
 
 func use_item(slot_resource : InventorySlotResource, type : int):
-	if slot_resource.item_resource.use_component != null:
-		var arguments_array : Array[UseArguments] = [UseArguments.PLAYER]
-		if slot_resource.item_resource.consumable_component != null:
-			arguments_array.append(UseArguments.SLOT_RESOURCE)
-		arguments_array.append_array(slot_resource.item_resource.use_component.extra_arguments) 
-		#print(slot_resource.item_resource.item_name.to_snake_case() + ("_primary" if type == UseType.PRIMARY 
-		#else "_secondary" if type == UseType.SECONDARY 
-		#else null),
-		#(get_parent() if arguments_array.has(UseArguments.PLAYER) else null),
-		#(slot_resource if arguments_array.has(UseArguments.SLOT_RESOURCE) else null))
-		call(
-		slot_resource.item_resource.item_name.to_snake_case() + ("_primary" if type == UseType.PRIMARY 
-		else "_secondary" if type == UseType.SECONDARY 
-		else null),
-		(get_parent() if arguments_array.has(UseArguments.PLAYER) else null),
-		(slot_resource if arguments_array.has(UseArguments.SLOT_RESOURCE) else null),
-		)
+	if slot_resource != null:
+		if slot_resource.item_resource != null:
+			if slot_resource.item_resource.use_component != null:
+				var arguments_array : Array[UseArguments] = [UseArguments.PLAYER]
+				if slot_resource.item_resource.consumable_component != null:
+					arguments_array.append(UseArguments.SLOT_RESOURCE)
+				arguments_array.append_array(slot_resource.item_resource.use_component.extra_arguments) 
+				#print(slot_resource.item_resource.item_name.to_snake_case() + ("_primary" if type == UseType.PRIMARY 
+				#else "_secondary" if type == UseType.SECONDARY 
+				#else null),
+				#(get_parent() if arguments_array.has(UseArguments.PLAYER) else null),
+				#(slot_resource if arguments_array.has(UseArguments.SLOT_RESOURCE) else null))
+				call(
+				slot_resource.item_resource.item_name.to_snake_case() + ("_primary" if type == UseType.PRIMARY 
+				else "_secondary" if type == UseType.SECONDARY 
+				else null),
+				(get_parent() if arguments_array.has(UseArguments.PLAYER) else null),
+				(slot_resource if arguments_array.has(UseArguments.SLOT_RESOURCE) else null),
+				)
 
 
 # item func template:

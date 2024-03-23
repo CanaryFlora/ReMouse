@@ -30,7 +30,7 @@
 		},
 		{
 			"uuid": "91bcbfd4-dace-4031-94f3-fc4b47591550",
-			"title": "add item unstacking",
+			"title": "add item unstacking/stacking",
 			"description": "",
 			"category": "08ad5ebf-1f20-4da7-835e-22f5bcd00330",
 			"steps": []
