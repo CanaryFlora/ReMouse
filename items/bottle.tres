@@ -6,7 +6,8 @@
 [resource]
 script = ExtResource("2_66i6c")
 item_name = &"Bottle"
+description = "A wooden bottle that can be filled with liquid."
+details = "Can hold all non-corrosive types of liquid"
 item_texture = ExtResource("1_kcq1m")
 stack_amount = 99
-item_components = Array[Resource("res://inventory/resources/item_component.gd")]([])
 item_specific_properties = {}

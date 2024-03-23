@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bhu3uk8yuq5c7"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bhu3uk8yuq5c7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mpa0i"]
 bg_color = Color(0.247059, 0.509804, 0.454902, 0.298039)
@@ -7,5 +7,8 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4hyhb"]
+
 [resource]
 Panel/styles/panel = SubResource("StyleBoxFlat_mpa0i")
+TooltipPanel/styles/panel = SubResource("StyleBoxEmpty_4hyhb")

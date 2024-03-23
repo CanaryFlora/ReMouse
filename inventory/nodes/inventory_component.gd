@@ -24,7 +24,9 @@ const item_database : Dictionary = {
 	"Redberry": preload("res://items/redberry.tres"),
 	"Cheese": preload("res://items/cheese.tres"),
 	"Wood Claw": preload("res://items/wood_claw.tres"),
-	"Wood Barricade Shield": preload("res://items/wood_barricade_shield.tres")
+	"Wood Barricade Shield": preload("res://items/wood_barricade_shield.tres"),
+	"Wood Mining Claw": preload("res://items/wood_mining_claw.tres"),
+	"Bottle": preload("res://items/bottle.tres"),
 }
 
 
@@ -42,10 +44,12 @@ func _ready():
 #	add_item("stone", 99)
 #	add_item("reFined Ruby", 99)
 	#add_item("Redberry", 5)
-	#add_item("Wood Claw", 7)
-	add_item("Wood Barricade Shield")
-	add_item("Water Bottle", 2)
-	remove_item("Water Bottle", 1)
+	add_item("Wood Claw", 2)
+	#add_item("Wood Barricade Shield")
+	#add_item("Water Bottle", 2)
+	add_item("Wood Mining Claw", 2)
+	add_item("Bottle", 4)
+	#remove_item("Water Bottle", 1)
 	#add_item("Water Bottle", 8)
 
 #------------------------------------------------------------------#
@@ -96,11 +100,13 @@ func find_non_full_slot_resource(item_resource : ItemResource):
 # Attempts to find any slot with the entered item_resource.
 func find_slot_resource_with_item(item_resource : ItemResource):
 	for slot_resource in slot_resources_array:
-		if slot_resource.item_resource == item_resource:
-			# print("Found slot_resource with the selected item: ", slot_resource)
+		#print(slot_resource.item_resource.item_name, " ", item_resource.item_name)
+		#print(slot_resource.item_resource.item_name == item_resource.item_name)
+		if slot_resource.item_resource.item_name == item_resource.item_name:
+			print("Found slot_resource with the selected item: ", slot_resource)
 			return slot_resource
 	# print("Couldn't find slot resource with item ", item_resource.item_name)
-	return null
+	#return null
 
 
 #------------------------------------------------------------------#
@@ -205,19 +211,22 @@ func remove_item(item : String, amount : int = 1, slot_resource : InventorySlotR
 	var item_in_database : ItemResource = item_database.get(item)
 	var prev_amount : int
 	if item_in_database != null:
+		if slot_resource == null:
+			slot_resource = find_slot_resource_with_item(item_in_database)
+			assert(slot_resource != null, "Cannot find slot resource with item to remove.")
 		while amount > 0:
-			if slot_resource == null:
-				slot_resource = find_slot_resource_with_item(item_in_database)
-			if slot_resource != null:
-				var max_possible_amount : int = item_in_database.stack_amount
-				var amount_to_remove : int
-				prev_amount = slot_resource.item_amount
-				slot_resource.item_amount = slot_resource.item_amount - amount
-				if max_possible_amount < amount:
-					amount_to_remove = max_possible_amount
-				elif max_possible_amount > amount: 
-					amount_to_remove = amount
-				amount = amount - prev_amount
-				print("Successfuly removed ", amount_to_remove, " items from the slot_resource ", slot_resource)
-				print("Items left to remove: ", amount)
+			var max_possible_amount : int = item_in_database.stack_amount
+			var amount_to_remove : int
+			prev_amount = slot_resource.item_amount
+			slot_resource.item_amount = slot_resource.item_amount - amount
+			if slot_resource.item_amount <= 0:
+				slot_resource.item_resource = null
+			print("slot amount ", slot_resource.item_amount)
+			if max_possible_amount < amount:
+				amount_to_remove = max_possible_amount
+			elif max_possible_amount > amount: 
+				amount_to_remove = amount
+			amount = amount - prev_amount
+			#print("Successfuly removed ", amount_to_remove, " items from the slot_resource ", slot_resource)
+			#print("Items left to remove: ", amount)
 

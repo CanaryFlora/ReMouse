@@ -2,9 +2,6 @@ extends Node
 ## A class that allows the entity to use and equip items.
 class_name InventoryUseComponent
 ## TODO: implement attack with lmb for left hand and rmb for right hand,
-## buttons for different secondary uses (like q left hand sec, d right hand sec)
-## provide a certain amount of data when an item is used based on component 
-## (always provide entity that used the item)
 ## add item unstacking
 
 
@@ -29,15 +26,22 @@ func use_item(slot_resource : InventorySlotResource, type : int):
 		if slot_resource.item_resource.consumable_component != null:
 			arguments_array.append(UseArguments.SLOT_RESOURCE)
 		arguments_array.append_array(slot_resource.item_resource.use_component.extra_arguments) 
+		#print(slot_resource.item_resource.item_name.to_snake_case() + ("_primary" if type == UseType.PRIMARY 
+		#else "_secondary" if type == UseType.SECONDARY 
+		#else null),
+		#(get_parent() if arguments_array.has(UseArguments.PLAYER) else null),
+		#(slot_resource if arguments_array.has(UseArguments.SLOT_RESOURCE) else null))
 		call(
-		slot_resource.item_resource.item_name.to_snake_case() + "_primary" if type == UseType.PRIMARY 
+		slot_resource.item_resource.item_name.to_snake_case() + ("_primary" if type == UseType.PRIMARY 
 		else "_secondary" if type == UseType.SECONDARY 
-		else null,
-		get_parent() if arguments_array.has(UseArguments.PLAYER) else null,
-		slot_resource if arguments_array.has(UseArguments.SLOT_RESOURCE) else null,
+		else null),
+		(get_parent() if arguments_array.has(UseArguments.PLAYER) else null),
+		(slot_resource if arguments_array.has(UseArguments.SLOT_RESOURCE) else null),
 		)
 
 
+# item func template:
+# func (player : Player, slot_resource : InventorySlotResource):
 
 
 func redberry_primary(slot_resource : InventorySlotResource):
@@ -47,6 +51,21 @@ func redberry_primary(slot_resource : InventorySlotResource):
 
 
 func water_bottle_primary(player : Player, slot_resource : InventorySlotResource):
-	#player.inventory_component.remove_item("Water Bottle", 1, slot_resource)
+	player.inventory_component.remove_item("Water Bottle", 1, slot_resource)
 	player.variable_stats_component.find_stat("Health").stat_value += 30
 
+
+func wood_claw_primary(player : Player, slot_resource : InventorySlotResource):
+	print("wood claw primary")
+
+
+func wood_claw_secondary(player : Player, slot_resource : InventorySlotResource):
+	print("wood claw secondary")
+
+
+func wood_mining_claw_primary(player : Player, slot_resource : InventorySlotResource):
+	print("wood mining claw primary")
+
+
+func wood_mining_claw_secondary(player : Player, slot_resource : InventorySlotResource):
+	print("wood mining claw secondary")

@@ -102,6 +102,7 @@ script = ExtResource("6_2kno8")
 slot_scene_parent = NodePath("../InventoryUI")
 inventory_slot_scene = ExtResource("8_hc1cu")
 equip_allowed = true
+use_allowed = true
 hotbar_slot_amount = 11
 hotbar_container_scene = ExtResource("9_4cl0j")
 hotbar_container_position = Vector2(5, 1000)

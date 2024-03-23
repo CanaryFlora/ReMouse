@@ -1,6 +1,9 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b2wflb17um3xg"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://b2wflb17um3xg"]
 
 [ext_resource type="StyleBox" uid="uid://bnnvwrqq2kqp2" path="res://inventory/themes/left_equipped_style_box.tres" id="1_qnif7"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aipyw"]
+
 [resource]
 Panel/styles/panel = ExtResource("1_qnif7")
+TooltipPanel/styles/panel = SubResource("StyleBoxEmpty_aipyw")

@@ -5,7 +5,9 @@ class_name ItemResource
 ## The item's name in-game.
 @export var item_name : StringName
 ## The description of the item.
-@export_multiline var item_description : String
+@export_multiline var description : String
+## The item details.
+@export_multiline var details : String
 ## Image which should be used as the texture of the item.
 @export var item_texture : CompressedTexture2D
 ## How much of this item can be in a single stack.

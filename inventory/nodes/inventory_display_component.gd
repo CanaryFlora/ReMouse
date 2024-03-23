@@ -199,7 +199,7 @@ func _unhandled_key_input(event):
 									inventory_equip_component_node.equip_item(pressed_slot, inventory_equip_component_node.EquipType.LEFT_HAND, !(
 										pressed_slot.item_resource.equip_component is TwoHandComponent 
 										and pressed_slot.item_resource.equip_component.two_hand_only))
-						elif pressed_slot.item_resource.use_component != null:
+						elif pressed_slot.item_resource.use_component != null and use_allowed:
 							inventory_use_component_node.use_item(pressed_slot, inventory_use_component_node.UseType.PRIMARY)
 
 
