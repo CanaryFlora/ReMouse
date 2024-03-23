@@ -1,23 +1,11 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=6 format=3 uid="uid://b33u7msymdsn4"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=5 format=3 uid="uid://b33u7msymdsn4"]
 
 [ext_resource type="Script" path="res://inventory/resources/item_resource.gd" id="1_xlple"]
-[ext_resource type="Script" path="res://inventory/resources/item_components/use_component.gd" id="3_6vh4t"]
 [ext_resource type="Texture2D" uid="uid://7dbqjrj1ahs5" path="res://assets/consumables/water_flask.png" id="3_8s2is"]
+[ext_resource type="Script" path="res://inventory/resources/item_components/use_component.gd" id="3_s8qbe"]
 
-[sub_resource type="GDScript" id="GDScript_tvd8f"]
-script/source = "func primary(player : Player, slot_resource : InventorySlotResource):
-	player.inventory_component_node.remove_item(\"water_bottle\", 1, slot_resource)
-	player.variable_stats_component.find_stat(\"Health\").stat_value += 10
-
-
-func secondary(player : Player):
-	pass
-
-"
-
-[sub_resource type="Resource" id="Resource_eji7k"]
-script = ExtResource("3_6vh4t")
-use_functions = SubResource("GDScript_tvd8f")
+[sub_resource type="Resource" id="Resource_b4ro5"]
+script = ExtResource("3_s8qbe")
 extra_arguments = Array[int]([])
 
 [resource]
@@ -27,4 +15,4 @@ item_description = ""
 item_texture = ExtResource("3_8s2is")
 stack_amount = 99
 item_specific_properties = {}
-use_component = SubResource("Resource_eji7k")
+use_component = SubResource("Resource_b4ro5")

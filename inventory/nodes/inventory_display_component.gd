@@ -153,13 +153,14 @@ func _unhandled_key_input(event):
 		elif event.is_action_pressed("use_right_hand_secondary"):
 			inventory_use_component_node.use_item(inventory_equip_component_node.right_hand_equipped_item, 
 			inventory_use_component_node.UseType.SECONDARY)
-	## inv slots quick equip
+	## hotbar equip hotkeys and using the primary abilty of items in the hotbar
 	if equip_allowed:
 		if event.pressed and !event.echo:
 			for i in range(11):
 				if event.is_action_pressed("hotbar_slot_" + str(i + 1)):
 					var pressed_slot : InventorySlotResource = display_slots_array[i].linked_slot_resource
 					if pressed_slot.item_resource != null:
+						## hotbar equip hotkey logic
 						if pressed_slot.item_resource.equip_component != null:
 							if (
 							pressed_slot.item_resource.equip_component is TwoHandComponent 
@@ -198,5 +199,7 @@ func _unhandled_key_input(event):
 									inventory_equip_component_node.equip_item(pressed_slot, inventory_equip_component_node.EquipType.LEFT_HAND, !(
 										pressed_slot.item_resource.equip_component is TwoHandComponent 
 										and pressed_slot.item_resource.equip_component.two_hand_only))
+						elif pressed_slot.item_resource.use_component != null:
+							inventory_use_component_node.use_item(pressed_slot, inventory_use_component_node.UseType.PRIMARY)
 
 

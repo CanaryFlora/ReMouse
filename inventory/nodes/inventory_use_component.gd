@@ -28,10 +28,10 @@ func use_item(slot_resource : InventorySlotResource, type : int):
 		var arguments_array : Array[UseArguments] = [UseArguments.PLAYER]
 		if slot_resource.item_resource.consumable_component != null:
 			arguments_array.append(UseArguments.SLOT_RESOURCE)
-		arguments_array.append_array(slot_resource.item_resource.use_component.extra_arguments)
-		slot_resource.item_resource.use_component.primary_use_function.call(
-		"primary" if type == UseType.PRIMARY 
-		else "secondary" if type == UseType.SECONDARY 
+		arguments_array.append_array(slot_resource.item_resource.use_component.extra_arguments) 
+		call(
+		slot_resource.item_resource.item_name.to_snake_case() + "_primary" if type == UseType.PRIMARY 
+		else "_secondary" if type == UseType.SECONDARY 
 		else null,
 		get_parent() if arguments_array.has(UseArguments.PLAYER) else null,
 		slot_resource if arguments_array.has(UseArguments.SLOT_RESOURCE) else null,
@@ -44,3 +44,9 @@ func redberry_primary(slot_resource : InventorySlotResource):
 	#inventory_component_node.remove_item("redberry", 1, slot_resource)
 	#get_parent().variable_stats.find_stat("Hunger").stat_value += 10
 	pass
+
+
+func water_bottle_primary(player : Player, slot_resource : InventorySlotResource):
+	#player.inventory_component.remove_item("Water Bottle", 1, slot_resource)
+	player.variable_stats_component.find_stat("Health").stat_value += 30
+

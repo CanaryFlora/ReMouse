@@ -42,8 +42,10 @@ func _ready():
 #	add_item("stone", 99)
 #	add_item("reFined Ruby", 99)
 	#add_item("Redberry", 5)
-	add_item("Wood Claw", 7)
+	#add_item("Wood Claw", 7)
 	add_item("Wood Barricade Shield")
+	add_item("Water Bottle", 2)
+	remove_item("Water Bottle", 1)
 	#add_item("Water Bottle", 8)
 
 #------------------------------------------------------------------#
