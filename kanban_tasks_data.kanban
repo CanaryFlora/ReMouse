@@ -11,15 +11,13 @@
 			"uuid": "84942bea-16f4-460b-a9cb-3cbbb2e6e5e3",
 			"title": "Currently Doing",
 			"tasks": [
-				"0546206c-1458-4756-9bcc-79d66c376dc0"
+				"91bcbfd4-dace-4031-94f3-fc4b47591550"
 			]
 		},
 		{
 			"uuid": "fd7ea42b-7425-471b-bbd3-df123115dd29",
 			"title": "Todo",
-			"tasks": [
-				"91bcbfd4-dace-4031-94f3-fc4b47591550"
-			]
+			"tasks": []
 		}
 	],
 	"tasks": [
@@ -33,13 +31,6 @@
 		{
 			"uuid": "91bcbfd4-dace-4031-94f3-fc4b47591550",
 			"title": "add item unstacking",
-			"description": "",
-			"category": "08ad5ebf-1f20-4da7-835e-22f5bcd00330",
-			"steps": []
-		},
-		{
-			"uuid": "0546206c-1458-4756-9bcc-79d66c376dc0",
-			"title": "add item tooltips",
 			"description": "",
 			"category": "08ad5ebf-1f20-4da7-835e-22f5bcd00330",
 			"steps": []

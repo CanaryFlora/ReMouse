@@ -11,7 +11,8 @@ two_hand_only = false
 [resource]
 script = ExtResource("3_frdx4")
 item_name = &"Wood Barricade Shield"
-item_description = ""
+description = ""
+details = ""
 item_texture = ExtResource("2_03ad8")
 stack_amount = 99
 item_specific_properties = {}

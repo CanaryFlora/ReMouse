@@ -6,7 +6,8 @@
 [resource]
 script = ExtResource("1_h7qur")
 item_name = &"Redberry"
-item_description = ""
+description = ""
+details = ""
 item_texture = ExtResource("1_kfwm4")
 stack_amount = 99
 item_specific_properties = {}

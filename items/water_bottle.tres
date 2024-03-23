@@ -11,7 +11,8 @@ extra_arguments = Array[int]([])
 [resource]
 script = ExtResource("1_xlple")
 item_name = &"Water Bottle"
-item_description = ""
+description = ""
+details = ""
 item_texture = ExtResource("3_8s2is")
 stack_amount = 99
 item_specific_properties = {}
