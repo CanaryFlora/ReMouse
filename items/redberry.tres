@@ -1,22 +1,13 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=7 format=3 uid="uid://cmfkev04bt165"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://cmfkev04bt165"]
 
-[ext_resource type="Script" path="res://inventory/resources/item_components/consumable_component.gd" id="1_6ri6l"]
 [ext_resource type="Script" path="res://inventory/resources/item_resource.gd" id="1_h7qur"]
 [ext_resource type="Texture2D" uid="uid://wosgxhbem4na" path="res://assets/consumables/redberry.png" id="1_kfwm4"]
-[ext_resource type="Script" path="res://inventory/resources/item_components/use_component.gd" id="2_d6sce"]
-
-[sub_resource type="Resource" id="Resource_nhfxi"]
-script = ExtResource("1_6ri6l")
-item_use_amount = 1
-items_replace_on_no_uses = Array[ExtResource("1_h7qur")]([])
-
-[sub_resource type="Resource" id="Resource_lhhga"]
-script = ExtResource("2_d6sce")
 
 [resource]
 script = ExtResource("1_h7qur")
 item_name = &"Redberry"
+description = ""
+details = ""
 item_texture = ExtResource("1_kfwm4")
 stack_amount = 99
-item_components = Array[Resource("res://inventory/resources/item_component.gd")]([SubResource("Resource_nhfxi"), SubResource("Resource_lhhga")])
 item_specific_properties = {}

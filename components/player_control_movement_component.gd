@@ -1,16 +1,17 @@
 extends Node
 ## A class that provides player-controllable movement to an entity.
-class_name PlayerControlMovementComponent
+class_name BasePlayerMovementComponent
 
+## The parent node of the entity.
+@onready var entity_node : Node2D = get_parent()
 ## The base movement speed of the entity.
 @export var base_movement_speed : int
 ## If this entity can use precise movement.
 @export var can_use_precise_movement : bool
+## The turn delay multiplier.
+@export var delay_multiplier : int
 ## The minimum precise movement turning time.
 @export var min_turn_time : float
-
-## The parent node of the entity.
-@onready var entity_node : Node2D = get_parent()
 ## The entity's current movement speed.
 @onready var movement_speed : int = base_movement_speed
 
@@ -42,7 +43,7 @@ func rotation():
 	if abs(neg_angle_to_cursor) < abs(pos_angle_to_cursor):
 		final_angle_to_cursor = neg_angle_to_cursor
 		chosen_angle = "neg"
-	var delay : float = abs(final_angle_to_cursor / 200)
+	var delay : float = abs(final_angle_to_cursor / delay_multiplier)
 	var final_delay : float = delay
 	if delay < min_turn_time:
 		final_delay = min_turn_time

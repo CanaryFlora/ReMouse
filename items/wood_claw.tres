@@ -1,25 +1,24 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=9 format=3 uid="uid://cu85jsvs473md"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=7 format=3 uid="uid://cu85jsvs473md"]
 
-[ext_resource type="Script" path="res://inventory/resources/item_components/tool_component.gd" id="1_h37kt"]
 [ext_resource type="Script" path="res://inventory/resources/item_resource.gd" id="1_mujet"]
 [ext_resource type="Script" path="res://inventory/resources/item_components/equip_component.gd" id="2_al28i"]
 [ext_resource type="Texture2D" uid="uid://dfmeq18gv1clw" path="res://assets/weapons/wood_claw_inv.png" id="2_ffhwu"]
-[ext_resource type="Script" path="res://inventory/resources/item_components/use_component.gd" id="3_4x7nn"]
+[ext_resource type="Script" path="res://inventory/resources/item_components/use_component.gd" id="4_grgi1"]
 
-[sub_resource type="Resource" id="Resource_6mrdw"]
-script = ExtResource("1_h37kt")
-wood_harvest = 1
-
-[sub_resource type="Resource" id="Resource_wsvbd"]
+[sub_resource type="Resource" id="Resource_fbqco"]
 script = ExtResource("2_al28i")
 
-[sub_resource type="Resource" id="Resource_xuaj0"]
-script = ExtResource("3_4x7nn")
+[sub_resource type="Resource" id="Resource_sn1pv"]
+script = ExtResource("4_grgi1")
+extra_arguments = Array[int]([])
 
 [resource]
 script = ExtResource("1_mujet")
 item_name = &"Wood Claw"
+description = "A tool consisting of a wooden base reinforced with stone and with stone spikes coming out of it."
+details = "Can be used for combat and for harvesting trees"
 item_texture = ExtResource("2_ffhwu")
 stack_amount = 1
-item_components = Array[Resource("res://inventory/resources/item_component.gd")]([SubResource("Resource_6mrdw"), SubResource("Resource_wsvbd"), SubResource("Resource_xuaj0")])
 item_specific_properties = {}
+equip_component = SubResource("Resource_fbqco")
+use_component = SubResource("Resource_sn1pv")

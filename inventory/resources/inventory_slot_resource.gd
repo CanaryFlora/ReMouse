@@ -7,13 +7,6 @@ class_name InventorySlotResource
 var item_resource : ItemResource
 ## The current amount of items in the slot.
 var item_amount : int
-## If the item in the slot is equipped in normal mode.
-var item_equipped : bool
-
-## If the item is equipped in the left hand in two hand mode.
-var item_equipped_left : bool
-## If the item is equipped in the right hand in two hand mode.
-var item_equipped_right : bool
 
 ## If the resource is a SpecializedSlotResource.
 var is_specialized : bool

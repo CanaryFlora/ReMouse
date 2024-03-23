@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://dkg40rh05k2ay"]
-
-[node name="ColorPicker" type="ColorPicker"]
-offset_left = 403.0
-offset_top = 102.0
-offset_right = 701.0
-offset_bottom = 678.0

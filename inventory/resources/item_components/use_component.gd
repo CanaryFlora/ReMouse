@@ -1,8 +1,5 @@
 extends ItemComponent
 class_name UseComponent
 
-## The name of this component.
-var component_name : StringName = "use"
-
-
-
+#@export var use_functions : UseFunctions
+@export var extra_arguments : Array[InventoryUseComponent.UseArguments]

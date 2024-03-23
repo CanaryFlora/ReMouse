@@ -1,9 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://day2gigkbrlvw"]
+[gd_scene load_steps=21 format=3 uid="uid://day2gigkbrlvw"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_wgmn8"]
 [ext_resource type="Texture2D" uid="uid://c1lg316nsbt3d" path="res://assets/player/roachmouse_body.png" id="2_smdd7"]
 [ext_resource type="Texture2D" uid="uid://cer3dnubik2wu" path="res://assets/player/roachmouse_hand.png" id="3_7hx8c"]
-[ext_resource type="Script" path="res://inventory/nodes/inventory_component.gd" id="4_itinh"]
 [ext_resource type="Script" path="res://inventory/nodes/inventory_display_component.gd" id="6_2kno8"]
 [ext_resource type="Script" path="res://inventory/resources/inventory_slot_resource.gd" id="6_pjpky"]
 [ext_resource type="Script" path="res://inventory/nodes/inventory_use_component.gd" id="7_1wq0u"]
@@ -13,9 +12,9 @@
 [ext_resource type="Script" path="res://components/player_control_movement_component.gd" id="11_htuck"]
 [ext_resource type="Script" path="res://components/variable_stats/entity_variable_stats_component.gd" id="12_3xv0u"]
 [ext_resource type="Script" path="res://components/variable_stats/stat_properties.gd" id="13_rvhr3"]
-[ext_resource type="Script" path="res://components/effect/effect_component.gd" id="14_2gqj0"]
 [ext_resource type="Script" path="res://components/effect_display/effect_display_component.gd" id="15_i6v5e"]
 [ext_resource type="PackedScene" uid="uid://b560uxcehnhsw" path="res://components/effect_display/scenes/effect_grid.tscn" id="15_slvqj"]
+[ext_resource type="Script" path="res://inventory/nodes/inventory_equip_component.gd" id="16_vf3vj"]
 [ext_resource type="Texture2D" uid="uid://be5563ehasak4" path="res://assets/variable_stats/health_bar.png" id="17_ck472"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e8u32"]
@@ -24,7 +23,7 @@ radius = 10.8653
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kd5wk"]
 size = Vector2(49, 116)
 
-[sub_resource type="Resource" id="Resource_w1l7l"]
+[sub_resource type="Resource" id="Resource_od6ci"]
 script = ExtResource("6_pjpky")
 
 [sub_resource type="Resource" id="Resource_8b2i8"]
@@ -32,26 +31,21 @@ script = ExtResource("13_rvhr3")
 stat_name = &"Health"
 min_value = 0.0
 max_value = 100.0
-starting_value = 100.0
+starting_value = 0.0
 decay = 0.0
 gain = 1.0
 increment_rate = 1.0
 progress_bar_node_path = NodePath("../StatUI/TextureProgressBar")
 
-[node name="Mouse" type="RigidBody2D" node_paths=PackedStringArray("inventory_component", "inventory_display_component", "player_movement_component", "inventory_use_component", "variable_stats_component", "effect_component", "effect_display_component")]
+[node name="Mouse" type="RigidBody2D" node_paths=PackedStringArray("entity_collision_node", "dash_hitbox")]
 collision_layer = 28
 collision_mask = 28
 gravity_scale = 0.0
 can_sleep = false
 linear_damp = 2.5
 script = ExtResource("1_wgmn8")
-inventory_component = NodePath("InventoryComponent")
-inventory_display_component = NodePath("InventoryDisplayComponent")
-player_movement_component = NodePath("PlayerControlMovementComponent")
-inventory_use_component = NodePath("InventoryUseComponent")
-variable_stats_component = NodePath("EntityVariableStatsComponent")
-effect_component = NodePath("EffectComponent")
-effect_display_component = NodePath("EffectDisplayComponent")
+entity_collision_node = NodePath("MainHitbox")
+dash_hitbox = NodePath("DashHitbox")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.95, 1)
@@ -103,46 +97,45 @@ position = Vector2(-0.5, 20)
 shape = SubResource("RectangleShape2D_kd5wk")
 disabled = true
 
-[node name="InventoryComponent" type="Node" parent="."]
-script = ExtResource("4_itinh")
-slot_amount = 31
-slot_resource = SubResource("Resource_w1l7l")
-
 [node name="InventoryDisplayComponent" type="Node" parent="." node_paths=PackedStringArray("slot_scene_parent")]
 script = ExtResource("6_2kno8")
 slot_scene_parent = NodePath("../InventoryUI")
 inventory_slot_scene = ExtResource("8_hc1cu")
+equip_allowed = true
+use_allowed = true
 hotbar_slot_amount = 11
 hotbar_container_scene = ExtResource("9_4cl0j")
 hotbar_container_position = Vector2(5, 1000)
 inventory_container_scene = ExtResource("10_k4fgs")
 inventory_container_position = Vector2(0, 700)
 inventory_container_columns = 10
+slot_amount = 31
+slot_resource = SubResource("Resource_od6ci")
 
 [node name="InventoryUseComponent" type="Node" parent="."]
 script = ExtResource("7_1wq0u")
-allow_equip = true
-two_hand_mode = true
 
-[node name="PlayerControlMovementComponent" type="Node" parent="."]
+[node name="BasePlayerMovementComponent" type="Node" parent="."]
 script = ExtResource("11_htuck")
-base_movement_speed = 1500
+base_movement_speed = 1600
 can_use_precise_movement = true
+delay_multiplier = 250
 min_turn_time = 0.05
 
 [node name="EntityVariableStatsComponent" type="Node" parent="."]
 script = ExtResource("12_3xv0u")
 stats_array = Array[ExtResource("13_rvhr3")]([SubResource("Resource_8b2i8")])
 
-[node name="EffectComponent" type="Node" parent="." node_paths=PackedStringArray("target", "stats_component")]
-script = ExtResource("14_2gqj0")
+[node name="EffectDisplayComponent" type="Node" parent="." node_paths=PackedStringArray("effect_grid", "target", "stats_component")]
+script = ExtResource("15_i6v5e")
+effect_grid = NodePath("../EffectUI/EffectGrid")
 target = NodePath("..")
 max_effects = 16
 stats_component = NodePath("../EntityVariableStatsComponent")
 
-[node name="EffectDisplayComponent" type="Node" parent="." node_paths=PackedStringArray("effect_grid")]
-script = ExtResource("15_i6v5e")
-effect_grid = NodePath("../EffectUI/EffectGrid")
+[node name="InventoryEquipComponent" type="Node" parent="."]
+script = ExtResource("16_vf3vj")
+two_hand_mode = true
 
 [node name="InventoryUI" type="CanvasLayer" parent="."]
 

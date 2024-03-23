@@ -1,16 +1,13 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=5 format=3 uid="uid://pwpeucxn1lf0"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://pwpeucxn1lf0"]
 
-[ext_resource type="Script" path="res://inventory/resources/item_components/use_component.gd" id="1_7p8wc"]
 [ext_resource type="Script" path="res://inventory/resources/item_resource.gd" id="1_34vm0"]
 [ext_resource type="Texture2D" uid="uid://dsa1nco51br8d" path="res://addons/godot_state_charts/parallel_state.svg" id="2_rqk6g"]
-
-[sub_resource type="Resource" id="Resource_o6qek"]
-script = ExtResource("1_7p8wc")
 
 [resource]
 script = ExtResource("1_34vm0")
 item_name = &"cheese"
+description = ""
+details = ""
 item_texture = ExtResource("2_rqk6g")
 stack_amount = 99
-item_components = Array[Resource("res://inventory/resources/item_component.gd")]([SubResource("Resource_o6qek")])
 item_specific_properties = {}

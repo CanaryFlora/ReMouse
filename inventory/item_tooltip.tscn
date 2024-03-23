@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyuie0ush0i88"]
+
+[ext_resource type="Theme" uid="uid://cgh47xow3u3an" path="res://inventory/themes/item_tooltip_theme.tres" id="1_yvdcx"]
+
+[node name="Panel" type="PanelContainer"]
+offset_right = 80.0
+offset_bottom = 84.0
+theme = ExtResource("1_yvdcx")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="EffectTooltip" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="RichTextLabel" parent="MarginContainer/EffectTooltip"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[font_size=24][color=e6c552][/color][/font_size]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Description" type="RichTextLabel" parent="MarginContainer/EffectTooltip"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[font_size=18][color=ebebeb][/color][/font_size]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Details" type="RichTextLabel" parent="MarginContainer/EffectTooltip"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[font_size=14][color=889393][/color][/font_size]"
+fit_content = true
+autowrap_mode = 0

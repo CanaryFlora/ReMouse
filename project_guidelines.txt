@@ -1,0 +1,9 @@
+snake_case for variable, function and folder names
+PascalCase for enum declarations, class and node names
+UPPER_CASE for constants and enum members
+
+Use composition AND inhertiance; everything that does not need to rely on another component should be a seperate
+component; everything that needs to rely on another component should extend it
+
+For component registries in scripts, use seperate variables if it's for nodes with utilities whose methods will
+be accessed and used later; otherwise, for data containers use arrays or dictionaries

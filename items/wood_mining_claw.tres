@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=7 format=3 uid="uid://bba6jirwm3lli"]
+
+[ext_resource type="Script" path="res://inventory/resources/item_components/equip_component.gd" id="1_iqlob"]
+[ext_resource type="Script" path="res://inventory/resources/item_resource.gd" id="1_ytrfv"]
+[ext_resource type="Texture2D" uid="uid://ds8tbd033rt8g" path="res://assets/tools/wood_mining_claw_inv.png" id="2_oc0gj"]
+[ext_resource type="Script" path="res://inventory/resources/item_components/use_component.gd" id="4_wvuu4"]
+
+[sub_resource type="Resource" id="Resource_p8kl6"]
+script = ExtResource("1_iqlob")
+
+[sub_resource type="Resource" id="Resource_36bik"]
+script = ExtResource("4_wvuu4")
+extra_arguments = Array[int]([])
+
+[resource]
+script = ExtResource("1_ytrfv")
+item_name = &"Wood Mining Claw"
+description = "A tool similar to the wooden claw, but instead of multiple small spikes, it has one larger spike coming out of it."
+details = "Can be used to break rocks and some ores"
+item_texture = ExtResource("2_oc0gj")
+stack_amount = 1
+item_specific_properties = {}
+equip_component = SubResource("Resource_p8kl6")
+use_component = SubResource("Resource_36bik")

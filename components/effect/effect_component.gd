@@ -131,3 +131,4 @@ func get_applied_effect(effect_name : StringName) -> Effect:
 		if effect.name.to_snake_case() == effect_name:
 			return effect
 	return null
+

@@ -1,0 +1,49 @@
+{
+	"categories": [
+		{
+			"uuid": "08ad5ebf-1f20-4da7-835e-22f5bcd00330",
+			"title": "Task",
+			"color": "70bafa"
+		}
+	],
+	"stages": [
+		{
+			"uuid": "84942bea-16f4-460b-a9cb-3cbbb2e6e5e3",
+			"title": "Currently Doing",
+			"tasks": [
+				"91bcbfd4-dace-4031-94f3-fc4b47591550"
+			]
+		},
+		{
+			"uuid": "fd7ea42b-7425-471b-bbd3-df123115dd29",
+			"title": "Todo",
+			"tasks": []
+		}
+	],
+	"tasks": [
+		{
+			"uuid": "be016b90-88b2-4663-ac7a-d2f3694a41d8",
+			"title": "Inventory Display Rewrite",
+			"description": "",
+			"category": "08ad5ebf-1f20-4da7-835e-22f5bcd00330",
+			"steps": []
+		},
+		{
+			"uuid": "91bcbfd4-dace-4031-94f3-fc4b47591550",
+			"title": "add item unstacking",
+			"description": "",
+			"category": "08ad5ebf-1f20-4da7-835e-22f5bcd00330",
+			"steps": []
+		}
+	],
+	"layout": {
+		"columns": [
+			[
+				"84942bea-16f4-460b-a9cb-3cbbb2e6e5e3"
+			],
+			[
+				"fd7ea42b-7425-471b-bbd3-df123115dd29"
+			]
+		]
+	}
+}

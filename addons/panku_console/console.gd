@@ -48,6 +48,7 @@ func _ready():
 		default_toggle_console_event.physical_keycode = KEY_QUOTELEFT
 		InputMap.action_add_event(ToggleConsoleAction, default_toggle_console_event)
 
+
 	# since panku console servers numerous purposes
 	# we use a module system to manage all different features
 	# modules are invisible to each other by design to avoid coupling
