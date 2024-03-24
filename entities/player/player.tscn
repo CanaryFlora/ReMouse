@@ -37,15 +37,13 @@ gain = 1.0
 increment_rate = 1.0
 progress_bar_node_path = NodePath("../StatUI/TextureProgressBar")
 
-[node name="Mouse" type="RigidBody2D" node_paths=PackedStringArray("entity_collision_node", "dash_hitbox")]
+[node name="Mouse" type="RigidBody2D"]
 collision_layer = 28
 collision_mask = 28
 gravity_scale = 0.0
 can_sleep = false
 linear_damp = 2.5
 script = ExtResource("1_wgmn8")
-entity_collision_node = NodePath("")
-dash_hitbox = NodePath("")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.95, 1)
@@ -109,6 +107,7 @@ hotbar_container_position = Vector2(5, 1000)
 inventory_container_scene = ExtResource("10_k4fgs")
 inventory_container_position = Vector2(0, 700)
 inventory_container_columns = 10
+unstack_rate = 0.1
 slot_amount = 31
 slot_resource = SubResource("Resource_od6ci")
 

@@ -33,24 +33,12 @@ const item_database : Dictionary = {
 
 func _ready():
 	generate_inventory_resources(slot_amount, slot_resource)
-	#add_item("Cheese", 5)
-#	add_item("refinedtopaz", 99)
-#	add_item("refinedruby", 99)
-#	add_item("refineddiamond", 99)
-#	add_item("refinedjade", 99)
-#	add_item("refinedemerald", 99)
-#	add_item("refinedsapphire", 99)
-#	add_item("wood", 99)
-#	add_item("stone", 99)
-#	add_item("reFined Ruby", 99)
-	#add_item("Redberry", 5)
 	add_item("Wood Claw", 2)
-	#add_item("Wood Barricade Shield")
-	#add_item("Water Bottle", 2)
+	add_item("Water Bottle", 99)
+	add_item("Water Bottle", 99)
 	add_item("Wood Mining Claw", 2)
 	add_item("Bottle", 4)
-	#remove_item("Water Bottle", 1)
-	#add_item("Water Bottle", 8)
+
 
 #------------------------------------------------------------------#
 #------------------------Inventory Utilities-----------------------#
@@ -115,14 +103,21 @@ func find_slot_resource_with_item(item_resource : ItemResource):
 
 
 ## Adds a specified amount of an item to the inventory.
-func add_item(item : String, amount : int = 1):
-	print("Adding ", amount, " of the item ", item)
+func add_item(item : String, amount : int = 1, slot_resource : InventorySlotResource = null):
+	#print("Adding ", amount, " of the item ", item)
 	# Search through item database to determine if the input item is valid
 	var item_in_database : ItemResource = item_database.get(item)
 	if item_in_database != null:
 		# Attempt to find a non full slot with the selected item
 		while amount > 0:
 			var non_full_slot : InventorySlotResource = find_non_full_slot_resource(item_in_database)
+			if slot_resource != null:
+				if slot_resource.item_resource != null:
+					#print("amount check %s; sr amount %s, id amount %s" % [slot_resource.item_amount < item_in_database.stack_amount, slot_resource.item_amount, item_in_database.stack_amount])
+					#print("resource check %s; sr resource %s, id %s"% [slot_resource.item_resource.item_name == item_in_database.item_name, slot_resource.item_resource.item_name, item_in_database.item_name])
+					if slot_resource.item_amount < item_in_database.stack_amount and slot_resource.item_resource.item_name == item_in_database.item_name:
+						#print("provided slotresource matched nonfull slot resource")
+						non_full_slot = slot_resource
 			# Check if slot is specialized
 			if non_full_slot != null:
 				if non_full_slot.is_specialized == false:
@@ -135,12 +130,14 @@ func add_item(item : String, amount : int = 1):
 						amount_to_add = max_possible_amount
 					elif max_possible_amount >= amount:
 						amount_to_add = amount
-					print("Resource currently has ", non_full_slot.item_amount, " items. After adding ", amount_to_add, " items, the slot will have ", non_full_slot.item_amount + amount_to_add, " items.")
+					#print("Resource currently has ", non_full_slot.item_amount, " items. After adding ", amount_to_add, " items, the slot will have ", non_full_slot.item_amount + amount_to_add, " items.")
 					# Use edit_slot_resource_util to edit the slot_amount of the found slot_resource according to the input
 					non_full_slot.item_amount = non_full_slot.item_amount + amount_to_add
 					amount = amount - amount_to_add
-					print("Successfully added ", amount_to_add, " of the item ", item.to_lower(), " to an non-full slot_resource.")
-					print("Items left to add: ", amount)
+					#print("Successfully added ", amount_to_add, " of the item ", item.to_lower(), " to an non-full slot_resource.")
+					#print("Items left to add: ", amount)
+					if amount <= 0:
+						return
 				# If slot is specialized, check if the item can be added into the slot and override stack_amount
 				elif non_full_slot.is_specialized == true and is_item_allowed(item_in_database, slot_resource) or non_full_slot.allowed_items.has(item_in_database) == true:
 					# Calculate if the maximum possible amount that can be added to a slot is smaller than the total amount
@@ -152,14 +149,18 @@ func add_item(item : String, amount : int = 1):
 						amount_to_add = max_possible_amount
 					elif max_possible_amount >= amount:
 						amount_to_add = amount
-					print("Resource currently has ", non_full_slot.item_amount, " items. After adding ", amount_to_add, " items, the slot will have ", non_full_slot.item_amount + amount_to_add, " items.")
+					#print("Resource currently has ", non_full_slot.item_amount, " items. After adding ", amount_to_add, " items, the slot will have ", non_full_slot.item_amount + amount_to_add, " items.")
 					# Use edit_slot_resource_util to edit the slot_amount of the found slot_resource according to the input
 					non_full_slot.item_amount =  non_full_slot.item_amount + amount_to_add
 					amount = amount - amount_to_add
-					print("Successfully added ", amount_to_add, " of the item ", item.to_lower(), " to an non-full SpecializedSlotResource.")
-					print("Items left to add: ", amount)
+					#print("Successfully added ", amount_to_add, " of the item ", item.to_lower(), " to an non-full SpecializedSlotResource.")
+					#print("Items left to add: ", amount)
 			# Attempt to find an empty slot in the inventory if there wasn't an avaliable slot
 			var empty_slot : InventorySlotResource = find_empty_slot_resource()
+			if slot_resource != null:
+				if slot_resource.item_resource == null:
+					#print("provided slotresource matched empty slot resource")
+					empty_slot = slot_resource
 			if empty_slot != null:
 				if empty_slot.is_specialized == false:
 					# Calculate if the maximum possible amount that can be added to a slot is smaller than the total amount
@@ -174,8 +175,8 @@ func add_item(item : String, amount : int = 1):
 					empty_slot.item_resource = item_in_database.duplicate(true)
 					empty_slot.item_amount = amount_to_add
 					amount = amount - item_in_database.stack_amount
-					print("Successfully added ", amount_to_add, " of the item ", item.to_lower(), " to an empty slot_resource.")
-					# print("Items left to add: ", amount)
+					#print("Successfully added ", amount_to_add, " of the item ", item.to_lower(), " to an empty slot_resource.")
+					#print("Items left to add: ", amount)
 				# If slot is specialized, check if the item can be added into the slot and override stack_amount
 				elif empty_slot.is_specialized == true and empty_slot.item_resource.find_components(empty_slot.allowed_item_components) != [] or empty_slot.allowed_items.has(item_in_database) == true:
 					# Calculate if the maximum possible amount that can be added to a slot is smaller than the total amount
@@ -187,15 +188,17 @@ func add_item(item : String, amount : int = 1):
 						amount_to_add = max_possible_amount
 					elif max_possible_amount >= amount:
 						amount_to_add = amount
-					print("Resource currently has ", empty_slot.item_amount, " items. After adding ", amount_to_add, " items, the slot will have ", empty_slot.item_amount + amount_to_add, " items.")
+					#print("Resource currently has ", empty_slot.item_amount, " items. After adding ", amount_to_add, " items, the slot will have ", empty_slot.item_amount + amount_to_add, " items.")
 					# Use edit_slot_resource_util to edit the slot_amount of the found slot_resource according to the input
 					empty_slot.item_resource = item_in_database.duplicate(true)
 					empty_slot.item_amount = empty_slot.item_amount + amount_to_add
 					amount = amount - amount_to_add
-					print("Successfully added ", amount_to_add, " of the item ", item.to_lower(), " to an non-full SpecializedSlotResource.")
-					print("Items left to add: ", amount)
+					#print("Successfully added ", amount_to_add, " of the item ", item.to_lower(), " to an non-full SpecializedSlotResource.")
+					#print("Items left to add: ", amount)
+					if amount <= 0:
+						return
 				else:
-					print("Couldn't find a suitable slot for ", amount, " of item ", item_in_database.item_name)
+					#print("Couldn't find a suitable slot for ", amount, " of item ", item_in_database.item_name)
 					return false
 			else:
 				return false
@@ -206,7 +209,7 @@ func add_item(item : String, amount : int = 1):
 
 ## Removes a specified amount of an item from the inventory.
 func remove_item(item : String, amount : int = 1, slot_resource : InventorySlotResource = null):
-	print("Removing ", amount, " of the item ", item)
+	#print("Removing ", amount, " of the item ", item)
 	# Search through item database to determine if the input item is valid
 	var item_in_database : ItemResource = item_database.get(item)
 	var prev_amount : int
@@ -221,7 +224,7 @@ func remove_item(item : String, amount : int = 1, slot_resource : InventorySlotR
 			slot_resource.item_amount = slot_resource.item_amount - amount
 			if slot_resource.item_amount <= 0:
 				slot_resource.item_resource = null
-			print("slot amount ", slot_resource.item_amount)
+			#print("slot amount ", slot_resource.item_amount)
 			if max_possible_amount < amount:
 				amount_to_remove = max_possible_amount
 			elif max_possible_amount > amount: 
