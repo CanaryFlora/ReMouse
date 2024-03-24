@@ -1,4 +1,4 @@
 # Godot 4+ specific ignores
 .godot/
-addons/kanban_tasks
+addons/kanban_tasks/
 kanban_tasks_data
