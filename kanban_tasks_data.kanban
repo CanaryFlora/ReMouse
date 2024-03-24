@@ -11,12 +11,26 @@
 			"uuid": "84942bea-16f4-460b-a9cb-3cbbb2e6e5e3",
 			"title": "Currently Doing",
 			"tasks": [
-				"91bcbfd4-dace-4031-94f3-fc4b47591550"
+				"c9eb6db1-f8df-4616-82b4-596b8cfad38b",
+				"ffaa1531-8439-451a-b23d-43e616a2c0bc"
 			]
 		},
 		{
-			"uuid": "fd7ea42b-7425-471b-bbd3-df123115dd29",
-			"title": "Todo",
+			"uuid": "84ed2c1a-17bc-42f6-aa8f-019ede279321",
+			"title": "0.0.6",
+			"tasks": [
+				"f85ed20d-bcdf-4bc9-8733-1e9eddf93420",
+				"bba0da41-7b9f-497c-9d7c-694878cf8616"
+			]
+		},
+		{
+			"uuid": "4166a1bf-b64e-467d-99b7-efaa30c8cdf8",
+			"title": "0.0.7",
+			"tasks": []
+		},
+		{
+			"uuid": "5b050496-1a56-43d3-8943-005984c7333c",
+			"title": "Later",
 			"tasks": []
 		}
 	],
@@ -29,8 +43,29 @@
 			"steps": []
 		},
 		{
-			"uuid": "91bcbfd4-dace-4031-94f3-fc4b47591550",
-			"title": "add item unstacking/stacking",
+			"uuid": "c9eb6db1-f8df-4616-82b4-596b8cfad38b",
+			"title": "Add a base interactable prop",
+			"description": "",
+			"category": "08ad5ebf-1f20-4da7-835e-22f5bcd00330",
+			"steps": []
+		},
+		{
+			"uuid": "f85ed20d-bcdf-4bc9-8733-1e9eddf93420",
+			"title": "Implement workbench crafting",
+			"description": "",
+			"category": "08ad5ebf-1f20-4da7-835e-22f5bcd00330",
+			"steps": []
+		},
+		{
+			"uuid": "bba0da41-7b9f-497c-9d7c-694878cf8616",
+			"title": "Implement furnace cooking",
+			"description": "",
+			"category": "08ad5ebf-1f20-4da7-835e-22f5bcd00330",
+			"steps": []
+		},
+		{
+			"uuid": "ffaa1531-8439-451a-b23d-43e616a2c0bc",
+			"title": "Make sprites for workbench table, furnace cooking place, unrefined ores, and more resources",
 			"description": "",
 			"category": "08ad5ebf-1f20-4da7-835e-22f5bcd00330",
 			"steps": []
@@ -39,10 +74,12 @@
 	"layout": {
 		"columns": [
 			[
-				"84942bea-16f4-460b-a9cb-3cbbb2e6e5e3"
+				"84942bea-16f4-460b-a9cb-3cbbb2e6e5e3",
+				"84ed2c1a-17bc-42f6-aa8f-019ede279321"
 			],
 			[
-				"fd7ea42b-7425-471b-bbd3-df123115dd29"
+				"4166a1bf-b64e-467d-99b7-efaa30c8cdf8",
+				"5b050496-1a56-43d3-8943-005984c7333c"
 			]
 		]
 	}
