@@ -12,7 +12,8 @@
 			"title": "Currently Doing",
 			"tasks": [
 				"c9eb6db1-f8df-4616-82b4-596b8cfad38b",
-				"ffaa1531-8439-451a-b23d-43e616a2c0bc"
+				"ffaa1531-8439-451a-b23d-43e616a2c0bc",
+				"d589b3a2-2da7-43f5-aea5-5959e88f8042"
 			]
 		},
 		{
@@ -66,6 +67,13 @@
 		{
 			"uuid": "ffaa1531-8439-451a-b23d-43e616a2c0bc",
 			"title": "Make sprites for workbench table, furnace cooking place, unrefined ores, and more resources",
+			"description": "",
+			"category": "08ad5ebf-1f20-4da7-835e-22f5bcd00330",
+			"steps": []
+		},
+		{
+			"uuid": "d589b3a2-2da7-43f5-aea5-5959e88f8042",
+			"title": "improve inv with myhailot feedback",
 			"description": "",
 			"category": "08ad5ebf-1f20-4da7-835e-22f5bcd00330",
 			"steps": []
