@@ -139,7 +139,6 @@ func _ready():
 			elif dragged_slot.linked_slot_resource.item_amount <= 0:
 				# if dragged slot does not have any more items in it, force cancel drag
 				var cancel_input : InputEventMouseButton = InputEventMouseButton.new()
-				print("force cancel")
 				cancel_input.pressed = false
 				cancel_input.button_index = 1
 				get_viewport().push_input(cancel_input)
