@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://bxd786euqaa4e"]
 
-[ext_resource type="Texture2D" uid="uid://bja6m7volue63" path="res://assets/props/workbench.png" id="1_qwx8b"]
+[ext_resource type="Texture2D" uid="uid://b8kq6ar83b5va" path="res://assets/props/structures/workbench/workbench_base.png" id="1_6sp54"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0v8me"]
-size = Vector2(227, 115)
+size = Vector2(271.985, 135.997)
 
 [node name="Workbench" type="StaticBody2D"]
 rotation = -0.00241107
@@ -11,8 +11,9 @@ collision_layer = 28
 collision_mask = 28
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_qwx8b")
+texture = ExtResource("1_6sp54")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0.5)
+position = Vector2(-1.00964, -0.00120456)
 shape = SubResource("RectangleShape2D_0v8me")
+one_way_collision_margin = 0.0

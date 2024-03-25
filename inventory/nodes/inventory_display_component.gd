@@ -90,7 +90,6 @@ func _physics_process(delta):
 						var unstack_drag_preview : TextureRect = dragged_slot.make_drag_preview()
 						unstack_drag_preview.scale = Vector2(0.5, 0.5)
 						dragged_slot.set_drag_preview(unstack_drag_preview)
-				print("s")
 				unstack_timer.emit_signal("timeout")
 				## give timer a small delay so player doesn't accidentally stack more items
 				unstack_timer.wait_time += 0.1
@@ -101,7 +100,6 @@ func _physics_process(delta):
 			if dragged_slot != null:
 				dragged_slot.set_drag_preview(dragged_slot.make_drag_preview())
 			unstack_timer.stop()
-			print("stopping")
 
 
 func _ready():

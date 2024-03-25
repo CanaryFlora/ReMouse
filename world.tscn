@@ -1,32 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://dtnywuijq3x43"]
+[gd_scene load_steps=4 format=3 uid="uid://dtnywuijq3x43"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_i646w"]
 [ext_resource type="Texture2D" uid="uid://co5gdq187l75b" path="res://assets/misc/placeholder_terrain.png" id="2_b1qla"]
 [ext_resource type="PackedScene" uid="uid://day2gigkbrlvw" path="res://entities/player/player.tscn" id="4_gml8x"]
-[ext_resource type="PackedScene" uid="uid://ml2ur33jps2w" path="res://world/props/natural_props/tree_normal.tscn" id="4_kfy31"]
-[ext_resource type="PackedScene" uid="uid://cbyxxmf2joi8n" path="res://world/props/natural_props/tree_autumn.tscn" id="5_5sdvp"]
-[ext_resource type="PackedScene" uid="uid://cypmqbo3arfbn" path="res://world/props/natural_props/bush.tscn" id="6_3fwsq"]
-[ext_resource type="PackedScene" uid="uid://bg13hskklgdat" path="res://world/props/natural_props/gem_rock.tscn" id="7_xqqmh"]
-[ext_resource type="PackedScene" uid="uid://dbo7m8e5h63st" path="res://world/props/natural_props/gold.tscn" id="8_ms2hy"]
-[ext_resource type="PackedScene" uid="uid://c1gjcnrouhtyc" path="res://world/props/natural_props/iron.tscn" id="9_g6eis"]
-[ext_resource type="PackedScene" uid="uid://2fqfl7g63swg" path="res://world/props/natural_props/rock.tscn" id="10_s8p3t"]
-[ext_resource type="PackedScene" uid="uid://ci70oge36ue53" path="res://world/props/natural_props/tree_winter.tscn" id="11_6taqo"]
-[ext_resource type="PackedScene" uid="uid://bfc5kk2o6htw" path="res://world/props/structures/furnace.tscn" id="12_otdfo"]
-[ext_resource type="PackedScene" uid="uid://bxd786euqaa4e" path="res://world/props/structures/workbench.tscn" id="13_vsswe"]
-
-[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_bd1t8"]
-resource_name = "basic"
-scenes/1/scene = ExtResource("4_kfy31")
-scenes/2/scene = ExtResource("5_5sdvp")
-scenes/3/scene = ExtResource("6_3fwsq")
-scenes/4/scene = ExtResource("7_xqqmh")
-scenes/5/scene = ExtResource("8_ms2hy")
-scenes/6/scene = ExtResource("9_g6eis")
-scenes/7/scene = ExtResource("10_s8p3t")
-scenes/8/scene = ExtResource("11_6taqo")
-
-[sub_resource type="TileSet" id="TileSet_6ef42"]
-sources/0 = SubResource("TileSetScenesCollectionSource_bd1t8")
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_i646w")
@@ -43,19 +19,5 @@ region_rect = Rect2(-1, -0.5, 251, 249)
 [node name="Mouse" parent="." instance=ExtResource("4_gml8x")]
 position = Vector2(446, 9)
 
-[node name="Props" type="TileMap" parent="."]
-unique_name_in_owner = true
-tile_set = SubResource("TileSet_6ef42")
-format = 2
-layer_0/tile_data = PackedInt32Array(46930582, 0, 65536, 2883607, 0, 65536, 1572947, 0, 65536, 786557, 0, 65536, 851995, 0, 65536, 1834988, 0, 65536, 3801071, 0, 65536, 4194402, 0, 65536, 1769520, 0, 196608, 983039, 0, 196608, 4718604, 0, 196608, 393280, 0, 196608, 327774, 0, 262144, 3342287, 0, 327680, 1179602, 0, 327680, 65516, 0, 327680, -327668, 0, 327680, 46, 0, 393216, -720823, 0, 393216, -917511, 0, 458752, -1310691, 0, 458752, 3670071, 0, 65536, 3080267, 0, 262144)
-
 [node name="Rotated Props" type="Node" parent="."]
 unique_name_in_owner = true
-
-[node name="Furnace" parent="." instance=ExtResource("12_otdfo")]
-position = Vector2(562, 1090)
-rotation = -2.58151
-
-[node name="Workbench" parent="." instance=ExtResource("13_vsswe")]
-position = Vector2(46, 539)
-rotation = -0.575405

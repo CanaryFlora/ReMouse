@@ -91,7 +91,7 @@ func find_slot_resource_with_item(item_resource : ItemResource):
 		#print(slot_resource.item_resource.item_name, " ", item_resource.item_name)
 		#print(slot_resource.item_resource.item_name == item_resource.item_name)
 		if slot_resource.item_resource.item_name == item_resource.item_name:
-			print("Found slot_resource with the selected item: ", slot_resource)
+			#print("Found slot_resource with the selected item: ", slot_resource)
 			return slot_resource
 	# print("Couldn't find slot resource with item ", item_resource.item_name)
 	#return null

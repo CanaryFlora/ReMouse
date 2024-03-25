@@ -64,7 +64,7 @@ func _make_custom_tooltip(for_text):
 
 
 func _get_drag_data(at_position):
-	if linked_slot_resource.item_resource != null:
+	if linked_slot_resource.item_resource != null and inventory_display_component.inventory_container_visible:
 		set_drag_preview(make_drag_preview())
 		emit_signal("dragged_slot", self)
 		return [self, linked_slot_resource]
