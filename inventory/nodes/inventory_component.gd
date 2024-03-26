@@ -85,7 +85,7 @@ func find_non_full_slot_resource(item_resource : ItemResource):
 	return null
 
 
-# Attempts to find any slot with the entered item_resource.
+## Attempts to find any slot with the entered item_resource.
 func find_slot_resource_with_item(item_resource : ItemResource):
 	for slot_resource in slot_resources_array:
 		#print(slot_resource.item_resource.item_name, " ", item_resource.item_name)

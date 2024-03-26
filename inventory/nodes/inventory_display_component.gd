@@ -2,11 +2,12 @@ extends InventoryComponent
 ## A class for creating a GUI to interact with an inventory.
 class_name InventoryDisplayComponent
 
+
+## An array of this component's InventorySlotPanels.
 var display_slots_array : Array[Node]
-var dragged_slot : InventorySlotPanel
-var mouse_over_slot : InventorySlotPanel
-var prev_mouse_over_slot : InventorySlotPanel
-var right_click_down : bool
+var _dragged_slot : InventorySlotPanel
+var _mouse_over_slot : InventorySlotPanel
+var _right_click_down : bool
 
 ## The node that InventorySlotScenes will be added as a child of.
 @export var slot_scene_parent : Node
@@ -51,6 +52,7 @@ var unstack_timer : Timer
 ## If the right hand equip mode is on.
 var right_hand_equip_mode : bool
 
+
 const UNSTACK_TIMER_SCENE : PackedScene = preload("res://inventory/unstack_timer.tscn")
 
 
@@ -79,26 +81,26 @@ func _physics_process(delta):
 	# check if unstacking requirements are satisfied, if yes and unstack timer isnt running, start unstack timer 
 	# if not, stop unstack timer if its running
 	# also check some other misc stuff so we don't get an error
-	if inventory_container_visible and dragged_slot != null and mouse_over_slot != null and right_click_down:
-		if dragged_slot.linked_slot_resource.item_resource != null:
+	if inventory_container_visible and _dragged_slot != null and _mouse_over_slot != null and _right_click_down:
+		if _dragged_slot.linked_slot_resource.item_resource != null:
 			if (
 				unstack_timer.is_stopped()
 				):
 				# emit timeout so when the player clicks once, one item is stacked and they dont have to wait
-				if mouse_over_slot.linked_slot_resource.item_resource != null:
-					if mouse_over_slot.linked_slot_resource.item_resource.item_name != dragged_slot.linked_slot_resource.item_resource.item_name:
-						var unstack_drag_preview : TextureRect = dragged_slot.make_drag_preview()
+				if _mouse_over_slot.linked_slot_resource.item_resource != null:
+					if _mouse_over_slot.linked_slot_resource.item_resource.item_name != _dragged_slot.linked_slot_resource.item_resource.item_name:
+						var unstack_drag_preview : TextureRect = _dragged_slot.make_drag_preview()
 						unstack_drag_preview.scale = Vector2(0.5, 0.5)
-						dragged_slot.set_drag_preview(unstack_drag_preview)
+						_dragged_slot.set_drag_preview(unstack_drag_preview)
 				unstack_timer.emit_signal("timeout")
 				## give timer a small delay so player doesn't accidentally stack more items
 				unstack_timer.wait_time += 0.1
 				unstack_timer.timeout.connect(_reset_timer_delay)
 				unstack_timer.start()
-	if !right_click_down:
+	if !_right_click_down:
 		if !unstack_timer.is_stopped():
-			if dragged_slot != null:
-				dragged_slot.set_drag_preview(dragged_slot.make_drag_preview())
+			if _dragged_slot != null:
+				_dragged_slot.set_drag_preview(_dragged_slot.make_drag_preview())
 			unstack_timer.stop()
 
 
@@ -109,44 +111,45 @@ func _ready():
 	for display_slot : InventorySlotPanel in display_slots_array:
 		display_slot.inventory_display_component = self
 		display_slot.dragged_slot.connect(func(slot_panel : InventorySlotPanel):
-			dragged_slot = slot_panel
+			_dragged_slot = slot_panel
 			)
 		display_slot.dropped_slot.connect(func(slot_panel : InventorySlotPanel):
-			dragged_slot = null
+			_dragged_slot = null
 			)
 		display_slot.mouse_entered.connect(func():
-			mouse_over_slot = display_slot
+			_mouse_over_slot = display_slot
 			# emit timeout when mouse moved to a new slot
-			if inventory_container_visible and dragged_slot != null and right_click_down:
+			if inventory_container_visible and _dragged_slot != null and _right_click_down:
 				unstack_timer.emit_signal("timeout")
 				# reset timer
 				unstack_timer.stop()
 				unstack_timer.start()
 			)
 		display_slot.mouse_exited.connect(func():
-			mouse_over_slot = null
+			_mouse_over_slot = null
 			)
 	# instantiate unstack timer
 	unstack_timer = UNSTACK_TIMER_SCENE.instantiate()
 	unstack_timer.wait_time = unstack_rate
 	unstack_timer.timeout.connect(func():
 		# unstack item if possible
-		if mouse_over_slot != null and dragged_slot != null:
-			if dragged_slot.linked_slot_resource.item_resource != null and dragged_slot.linked_slot_resource.item_amount > 0:
-				var prev_item_resource : ItemResource = dragged_slot.linked_slot_resource.item_resource
-				remove_item(dragged_slot.linked_slot_resource.item_resource.item_name, 1, dragged_slot.linked_slot_resource)
-				add_item(prev_item_resource.item_name, 1, mouse_over_slot.linked_slot_resource)
-			elif dragged_slot.linked_slot_resource.item_amount <= 0:
+		if _mouse_over_slot != null and _dragged_slot != null:
+			if _dragged_slot.linked_slot_resource.item_resource != null and _dragged_slot.linked_slot_resource.item_amount > 0:
+				var prev_item_resource : ItemResource = _dragged_slot.linked_slot_resource.item_resource
+				remove_item(_dragged_slot.linked_slot_resource.item_resource.item_name, 1, _dragged_slot.linked_slot_resource)
+				add_item(prev_item_resource.item_name, 1, _mouse_over_slot.linked_slot_resource)
+			elif _dragged_slot.linked_slot_resource.item_amount <= 0:
 				# if dragged slot does not have any more items in it, force cancel drag
 				var cancel_input : InputEventMouseButton = InputEventMouseButton.new()
 				cancel_input.pressed = false
 				cancel_input.button_index = 1
 				get_viewport().push_input(cancel_input)
-				right_click_down = false
-				dragged_slot = null
+				_right_click_down = false
+				_dragged_slot = null
 		)
 	self.add_child(unstack_timer)
 
+## Instantiates and sets up this component's InventorySlotPanels.
 func generate_display_slots() -> void:
 	if slot_amount > 0 and slot_scene_parent != null:
 		var inventory_container_child_index : int
@@ -279,15 +282,14 @@ func _unhandled_key_input(event):
 							inventory_use_component_node.use_item(pressed_slot, inventory_use_component_node.UseType.PRIMARY)
 
 
-
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == 2:
 			match event.pressed:
 				true:
-					right_click_down = true
+					_right_click_down = true
 				false:
-					right_click_down = false
+					_right_click_down = false
 
 
 # this has to be a standalone method because otherwise it's impossible to disconnect

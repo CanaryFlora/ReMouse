@@ -1,4 +1,5 @@
 extends Node
+## A class that manages equipping items from the inventory.
 class_name InventoryEquipComponent
 
 
@@ -14,11 +15,13 @@ enum EquipType {
 }
 
 
+## The item that the player has currently equipped in their left hand.
 var left_hand_equipped_item : InventorySlotResource
+## The item that the player has currently equipped in their left hand. 
 var right_hand_equipped_item : InventorySlotResource
 
 
-
+## Equips a specified item to the specified hand.
 func equip_item(slot_resource : InventorySlotResource, hand : int, replace_previous_item : bool = true):
 	if two_hand_mode == true:
 		match hand:
@@ -43,6 +46,7 @@ func equip_item(slot_resource : InventorySlotResource, hand : int, replace_previ
 		#print("equipped left: %s; equipped right: %s" % [slot_resource.item_resource.equip_component.item_equipped_left, slot_resource.item_resource.equip_component.item_equipped_right])
 
 
+## Unequips the specified item from the specified hand.
 func unequip_item(slot_resource : InventorySlotResource, hand : int):
 	if slot_resource.item_resource.equip_component != null:
 		if two_hand_mode == true:
